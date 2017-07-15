@@ -1,0 +1,5 @@
+C:\LojaVirtualApoio\LojaVirtual\LojaVirtual.Domain\bin\Debug\LojaVirtual.Domain.dll
+C:\LojaVirtualApoio\LojaVirtual\LojaVirtual.Domain\bin\Debug\LojaVirtual.Domain.pdb
+C:\LojaVirtualApoio\LojaVirtual\LojaVirtual.Domain\bin\Debug\FluentValidator.dll
+C:\LojaVirtualApoio\LojaVirtual\LojaVirtual.Domain\obj\Debug\LojaVirtual.Domain.dll
+C:\LojaVirtualApoio\LojaVirtual\LojaVirtual.Domain\obj\Debug\LojaVirtual.Domain.pdb

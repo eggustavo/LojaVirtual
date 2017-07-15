@@ -1,0 +1,4 @@
+C:\LojaVirtualApoio\LojaVirtual\LojaVirtual.Domain.Core\bin\Debug\LojaVirtual.Domain.Core.dll
+C:\LojaVirtualApoio\LojaVirtual\LojaVirtual.Domain.Core\bin\Debug\LojaVirtual.Domain.Core.pdb
+C:\LojaVirtualApoio\LojaVirtual\LojaVirtual.Domain.Core\obj\Debug\LojaVirtual.Domain.Core.dll
+C:\LojaVirtualApoio\LojaVirtual\LojaVirtual.Domain.Core\obj\Debug\LojaVirtual.Domain.Core.pdb
