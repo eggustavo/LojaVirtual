@@ -7,7 +7,6 @@ namespace LojaVirtual.Domain.Interfaces.Repositories.Base
     {
         IEnumerable<TEntity> ListarTodos();
         TEntity ObterPorId(Guid id);
-        //bool Existe(Func<TEntity, bool> where);
         void Adicionar(TEntity entity);
         void Atualizar(TEntity entity);
         void Remover(TEntity entity);

@@ -11,6 +11,5 @@ namespace LojaVirtual.Domain.Base
         }
 
         public Guid Id { get; protected set; }
-        //public abstract bool EhValido();
     }
 }

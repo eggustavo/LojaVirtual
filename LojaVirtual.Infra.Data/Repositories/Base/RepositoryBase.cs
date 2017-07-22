@@ -6,7 +6,7 @@ using System.Linq;
 using LojaVirtual.Domain.Interfaces.Repositories.Base;
 using LojaVirtual.Infra.Data.Context;
 
-namespace LojaVirtual.Infra.Data.Base
+namespace LojaVirtual.Infra.Data.Repositories.Base
 {
     public abstract class RepositoryBase<TEntity> : IRepositoryBase<TEntity> where TEntity : class
     {
@@ -28,11 +28,6 @@ namespace LojaVirtual.Infra.Data.Base
         {
             return DbSet.Find(id);
         }
-
-        //public bool Existe(Func<TEntity, bool> @where)
-        //{
-        //    throw new NotImplementedException();
-        //}
 
         public void Adicionar(TEntity entity)
         {

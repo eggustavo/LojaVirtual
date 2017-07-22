@@ -47,7 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Base\RepositoryBase.cs" />
+    <Compile Include="Repositories\Base\RepositoryBase.cs" />
     <Compile Include="Context\LojaVirutalContext.cs" />
     <Compile Include="Mappings\CategoriaMapping.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using LojaVirtual.Domain.DTOs.DomainUsuario;
-using LojaVirtual.Domain.Interfaces.Services.Base;
 
 namespace LojaVirtual.Domain.Interfaces.Services.DomainUsuario
 {
-    public interface IServiceUsuario : IServiceBase
+    public interface IServiceUsuario : IDisposable
     {
         UsuarioDto ObterPorId(Guid id);
         IEnumerable<UsuarioDto> ListarTodos();

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Web.Http;
 using LojaVirtual.Domain.Entities.DomainCategoria;
 using LojaVirtual.Domain.Interfaces.Services.DomainCategoria;
@@ -22,12 +23,35 @@ namespace LojaVirtual.WebApi.Controllers.Categorias
             return _serviceCategoria.Listar();
         }
 
+        [HttpGet]
+        [Route("categoria/{id}")]
+        public Categoria ObterPorId(Guid id)
+        {
+            return _serviceCategoria.ObterPorId(id);
+        }
+
         [HttpPost]
         [Route("categoria")]
         public Categoria Adicionar(Categoria categoria)
         {
             _serviceCategoria.Adicionar(categoria);
             return categoria;
+        }
+
+        [HttpPut]
+        [Route("categoria")]
+        public Categoria Atualizar(Categoria categoria)
+        {
+            _serviceCategoria.Atualizar(categoria);
+            return categoria;
+        }
+
+        [HttpDelete]
+        [Route("categoria/{id}")]
+        public Guid Remover(Guid id)
+        {
+            _serviceCategoria.Remover(id);
+            return id;
         }
     }
 }

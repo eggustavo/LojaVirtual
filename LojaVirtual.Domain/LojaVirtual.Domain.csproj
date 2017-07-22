@@ -52,7 +52,6 @@
     <Compile Include="Interfaces\Repositories\Base\IRepositoryBase.cs" />
     <Compile Include="Interfaces\Repositories\DomainCategoria\IRepositoryCategoria.cs" />
     <Compile Include="Interfaces\Repositories\DomainUsuario\IRepositoryUsuario.cs" />
-    <Compile Include="Interfaces\Services\Base\IServiceBase.cs" />
     <Compile Include="Interfaces\Services\DomainCategoria\IServiceCategoria.cs" />
     <Compile Include="Interfaces\Services\DomainUsuario\IServiceUsuario.cs" />
     <Compile Include="Interfaces\UoW\IUnitOfWork.cs" />
@@ -64,8 +63,6 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Enumerators\DomainUsuario\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
