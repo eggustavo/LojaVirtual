@@ -31,6 +31,7 @@ namespace LojaVirtual.Domain.Services.DomainCategoria
 
         public void Adicionar(Categoria categoria)
         {
+            categoria.Id = 1;
             _repositoryCategoria.Adicionar(categoria);
             Commit();
         }

@@ -1,4 +1,5 @@
-﻿using LojaVirtual.Domain.Interfaces.UoW;
+﻿using System;
+using LojaVirtual.Domain.Interfaces.UoW;
 using LojaVirtual.Infra.Data.Context;
 
 namespace LojaVirtual.Infra.Data.UoW

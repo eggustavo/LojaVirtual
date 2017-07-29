@@ -44,20 +44,26 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Base\EntityBase.cs" />
+    <Compile Include="DTOs\DomainProduto\ProdutoDto.cs" />
     <Compile Include="DTOs\DomainUsuario\UsuarioEnderecoDto.cs" />
     <Compile Include="DTOs\DomainUsuario\UsuarioDto.cs" />
     <Compile Include="Entities\DomainCategoria\Categoria.cs" />
+    <Compile Include="Entities\DomainProduto\Produto.cs" />
     <Compile Include="Entities\DomainUsuario\Usuario.cs" />
     <Compile Include="Entities\DomainUsuario\UsuarioEndereco.cs" />
     <Compile Include="Interfaces\Repositories\Base\IRepositoryBase.cs" />
     <Compile Include="Interfaces\Repositories\DomainCategoria\IRepositoryCategoria.cs" />
+    <Compile Include="Interfaces\Repositories\DomainProduto\IRepositoryProduto.cs" />
     <Compile Include="Interfaces\Repositories\DomainUsuario\IRepositoryUsuario.cs" />
+    <Compile Include="Interfaces\Services\Base\IServiceBase.cs" />
     <Compile Include="Interfaces\Services\DomainCategoria\IServiceCategoria.cs" />
+    <Compile Include="Interfaces\Services\DomainProduto\IServiceProduto.cs" />
     <Compile Include="Interfaces\Services\DomainUsuario\IServiceUsuario.cs" />
     <Compile Include="Interfaces\UoW\IUnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Base\ServiceBase.cs" />
     <Compile Include="Services\DomainCategoria\ServiceCategoria.cs" />
+    <Compile Include="Services\DomainProduto\ServiceProduto.cs" />
     <Compile Include="Services\DomainUsuario\ServiceUsuario.cs" />
   </ItemGroup>
   <ItemGroup>

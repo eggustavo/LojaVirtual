@@ -11,5 +11,10 @@ namespace LojaVirtual.Infra.Data.Repositories.DomainCategoira
             : base(context)
         {
         }
+
+        public Categoria ObterPorId(int id)
+        {
+            return DbSet.Find(id);
+        }
     }
 }

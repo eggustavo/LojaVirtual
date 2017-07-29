@@ -17,21 +17,21 @@ namespace LojaVirtual.WebApi.Controllers.Categorias
         }
 
         [HttpGet]
-        [Route("categoria/todas")]
+        [Route("v1/categoria/todas")]
         public IEnumerable<Categoria> Listar()
         {
             return _serviceCategoria.Listar();
         }
 
         [HttpGet]
-        [Route("categoria/{id}")]
+        [Route("v1/categoria/{id}")]
         public Categoria ObterPorId(Guid id)
         {
             return _serviceCategoria.ObterPorId(id);
         }
 
         [HttpPost]
-        [Route("categoria")]
+        [Route("v1/categoria")]
         public Categoria Adicionar(Categoria categoria)
         {
             _serviceCategoria.Adicionar(categoria);
@@ -39,7 +39,7 @@ namespace LojaVirtual.WebApi.Controllers.Categorias
         }
 
         [HttpPut]
-        [Route("categoria")]
+        [Route("v1/categoria")]
         public Categoria Atualizar(Categoria categoria)
         {
             _serviceCategoria.Atualizar(categoria);
@@ -47,7 +47,7 @@ namespace LojaVirtual.WebApi.Controllers.Categorias
         }
 
         [HttpDelete]
-        [Route("categoria/{id}")]
+        [Route("v1/categoria/{id}")]
         public Guid Remover(Guid id)
         {
             _serviceCategoria.Remover(id);

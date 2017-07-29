@@ -12,6 +12,7 @@ namespace LojaVirtual.Infra.Data.Context
         {
             Configuration.LazyLoadingEnabled = false;
             Configuration.ProxyCreationEnabled = false;
+            //Configuration.AutoDetectChangesEnabled = false;
         }
 
         public DbSet<Categoria> CategoriaSet { get; set; }
@@ -34,6 +35,7 @@ namespace LojaVirtual.Infra.Data.Context
 
             //3 - Configurações de Mapeamento
             modelBuilder.Configurations.Add(new CategoriaMapping());
+            modelBuilder.Configurations.Add(new ProdutoMapping());
 
             base.OnModelCreating(modelBuilder);
         }

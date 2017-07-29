@@ -11,3 +11,16 @@ C:\LojaVirtualApoio\LojaVirtual\LojaVirtual.Infra.Data\bin\Debug\FluentValidator
 C:\LojaVirtualApoio\LojaVirtual\LojaVirtual.Infra.Data\bin\Debug\LojaVirtual.Domain.pdb
 C:\LojaVirtualApoio\LojaVirtual\LojaVirtual.Infra.Data\bin\Debug\EntityFramework.xml
 C:\LojaVirtualApoio\LojaVirtual\LojaVirtual.Infra.Data\bin\Debug\EntityFramework.SqlServer.xml
+C:\Eduardo\Projetos\LojaVirtualApoio\LojaVirtual\LojaVirtual.Infra.Data\bin\Debug\LojaVirtual.Infra.Data.dll.config
+C:\Eduardo\Projetos\LojaVirtualApoio\LojaVirtual\LojaVirtual.Infra.Data\bin\Debug\LojaVirtual.Infra.Data.dll
+C:\Eduardo\Projetos\LojaVirtualApoio\LojaVirtual\LojaVirtual.Infra.Data\bin\Debug\LojaVirtual.Infra.Data.pdb
+C:\Eduardo\Projetos\LojaVirtualApoio\LojaVirtual\LojaVirtual.Infra.Data\bin\Debug\EntityFramework.dll
+C:\Eduardo\Projetos\LojaVirtualApoio\LojaVirtual\LojaVirtual.Infra.Data\bin\Debug\EntityFramework.SqlServer.dll
+C:\Eduardo\Projetos\LojaVirtualApoio\LojaVirtual\LojaVirtual.Infra.Data\bin\Debug\LojaVirtual.Domain.dll
+C:\Eduardo\Projetos\LojaVirtualApoio\LojaVirtual\LojaVirtual.Infra.Data\bin\Debug\FluentValidator.dll
+C:\Eduardo\Projetos\LojaVirtualApoio\LojaVirtual\LojaVirtual.Infra.Data\bin\Debug\LojaVirtual.Domain.pdb
+C:\Eduardo\Projetos\LojaVirtualApoio\LojaVirtual\LojaVirtual.Infra.Data\bin\Debug\EntityFramework.xml
+C:\Eduardo\Projetos\LojaVirtualApoio\LojaVirtual\LojaVirtual.Infra.Data\bin\Debug\EntityFramework.SqlServer.xml
+C:\Eduardo\Projetos\LojaVirtualApoio\LojaVirtual\LojaVirtual.Infra.Data\obj\Debug\LojaVirtual.Infra.Data.csprojResolveAssemblyReference.cache
+C:\Eduardo\Projetos\LojaVirtualApoio\LojaVirtual\LojaVirtual.Infra.Data\obj\Debug\LojaVirtual.Infra.Data.dll
+C:\Eduardo\Projetos\LojaVirtualApoio\LojaVirtual\LojaVirtual.Infra.Data\obj\Debug\LojaVirtual.Infra.Data.pdb

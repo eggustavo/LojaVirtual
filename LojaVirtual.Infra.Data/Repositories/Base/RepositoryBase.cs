@@ -24,22 +24,27 @@ namespace LojaVirtual.Infra.Data.Repositories.Base
             return DbSet.AsNoTracking().ToList();
         }
 
-        public TEntity ObterPorId(Guid id)
+        public virtual TEntity ObterPorId(Guid id)
         {
             return DbSet.Find(id);
         }
 
-        public void Adicionar(TEntity entity)
+        public bool Existe(Func<TEntity, bool> where)
+        {
+            return DbSet.Any(where);
+        }
+
+        public virtual void Adicionar(TEntity entity)
         {
             DbSet.Add(entity);
         }
 
-        public void Atualizar(TEntity entity)
+        public virtual void Atualizar(TEntity entity)
         {
             DbSet.AddOrUpdate(entity);
         }
 
-        public void Remover(TEntity entity)
+        public virtual void Remover(TEntity entity)
         {
             DbSet.Remove(entity);
         }

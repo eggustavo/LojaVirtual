@@ -1,8 +1,9 @@
-﻿using LojaVirtual.Domain.Interfaces.UoW;
+﻿using FluentValidator;
+using LojaVirtual.Domain.Interfaces.UoW;
 
 namespace LojaVirtual.Domain.Services.Base
 {
-    public abstract class ServiceBase
+    public abstract class ServiceBase : Notifiable
     {
         private readonly IUnitOfWork _uok;
 

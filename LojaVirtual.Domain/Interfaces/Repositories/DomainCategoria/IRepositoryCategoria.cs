@@ -5,6 +5,6 @@ namespace LojaVirtual.Domain.Interfaces.Repositories.DomainCategoria
 {
     public interface IRepositoryCategoria : IRepositoryBase<Categoria>
     {
-        
+        Categoria ObterPorId(int id);
     }
 }
