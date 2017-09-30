@@ -1,0 +1,39 @@
+<html ng-app="LV">
+  <head>
+    <meta charset="utf-8">
+    <title>Loja Virtual</title>
+    <meta name="description" content="Bem vindo à Loja Virtual" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="../bower_components/toastr/toastr.css" />
+    <link rel="stylesheet" href="../content/css/loja-virtual.css">
+    <link rel="stylesheet" href="../bower_components/animate.css/animate.css">
+  </head>
+  <body>
+    <div ng-include="'app/layout/menu.html'"></div>
+    <div class="container" ng-view></div>
+
+    <script src="../bower_components/jquery/dist/jquery.js"></script>
+    <script src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="../bower_components/toastr/toastr.js"></script>
+    <script src="../bower_components/angular/angular.js"></script>
+    <script src="../bower_components/angular-route/angular-route.js"></script>
+    <script src="../bower_components/angular-input-masks/angular-input-masks-dependencies.js"></script>
+    <script src="../bower_components/angular-input-masks/angular-input-masks.js"></script>
+    <script src="../bower_components/angular-input-masks/angular-input-masks.br.js"></script>
+
+    <!-- Scripts AngularJS -->
+    <script src="app/app.module.js"></script>
+    <script src="app/app.config.js"></script>
+    <script src="app/app.constant.js"></script>
+
+    <!-- Factories -->
+    <script src="app/factories/categoria.factory.js"></script>
+
+    <!-- Controllers -->
+    <script src="app/categoria/categoria.list.controller.js"></script>
+    <script src="app/categoria/categoria.create.controller.js"></script>
+    <script src="app/categoria/categoria.edit.controller.js"></script>
+  </body>
+</html>
