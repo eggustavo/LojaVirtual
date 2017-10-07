@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Dapper;
+using LojaVirtual.Domain.DTOs.DomainProduto;
 using LojaVirtual.Domain.Entities.DomainProduto;
 using LojaVirtual.Domain.Interfaces.Repositories.DomainProduto;
 using LojaVirtual.Infra.Data.Context;
@@ -10,24 +12,40 @@ namespace LojaVirtual.Infra.Data.Repositories.DomainProduto
 {
     public class RepositoryProduto : RepositoryBase<Produto>, IRepositoryProduto
     {
+        private readonly LojaVirutalContext _context;
+
         public RepositoryProduto(LojaVirutalContext context) 
             : base(context)
         {
+            _context = context;
         }
 
-        public IEnumerable<Produto> ListarPorCategoria(int categoriaId)
+        public IEnumerable<ListarResponse> Listar()
         {
-            return DbSet.Include("Categoria").AsNoTracking().Where(p => p.Categoria.Id == categoriaId).ToList();
+            const string sqlSelect = @"Select A.*,
+                                              B.Descricao DescricaoCategoria
+                                       From LV_Produto A,
+                                            LV_Categoria B
+                                       Where
+                                         B.Id = A.CategoriaId
+                                       Order By A.Descricao";
+
+            return _context.Database.Connection.Query<ListarResponse>(sqlSelect);
         }
 
-        public override Produto ObterPorId(Guid id)
+        public ListarResponse ObterPorId(Guid id)
         {
-            return DbSet.Include("Categoria").FirstOrDefault(p => p.Id == id);
-        }
+            const string sqlSelect = @"Select A.*,
+                                              B.Descricao DescricaoCategoria
+                                       From LV_Produto A,
+                                            LV_Categoria B
+                                       Where
+                                         B.Id = A.CategoriaId
+                                       And
+                                         A.Id = @pId
+                                       Order By A.Descricao";
 
-        public override IEnumerable<Produto> ListarTodos()
-        {
-            return DbSet.Include("Categoria").AsNoTracking().ToList();
+            return _context.Database.Connection.Query<ListarResponse>(sqlSelect, new {pId = id}).FirstOrDefault();
         }
     }
 }

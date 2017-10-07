@@ -1,104 +1,63 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using FluentValidator;
+﻿using System.CodeDom;
 using LojaVirtual.Domain.Base;
-using LojaVirtual.Domain.DTOs.DomainUsuario;
+using LojaVirtual.Domain.Contracts.DomainUsuario;
 
 namespace LojaVirtual.Domain.Entities.DomainUsuario
 {
     public class Usuario : EntityBase
     {
-        private readonly IList<UsuarioEndereco> _enderecos;
-
         public string Nome { get; private set; }
-        public string Email { get; private set; }
+        public string UsuarioLogin { get; private set; }
         public string Senha { get; private set; }
-        public string Cpf { get; private set; }
-        public bool Ativo { get; private set; }
+        public string Email { get; private set; }
+        public bool FlagAtivo { get; private set; }
 
-        public virtual ICollection<UsuarioEndereco> Enderecos => _enderecos;
-
-        //Construtor EntityFramework
-        protected Usuario()
+        public Usuario(string nome, string usuarioLogin, string senha, string email)
         {
+            Nome = nome;
+            UsuarioLogin = usuarioLogin;
+            Senha = Encrypt.EncryptPassword(senha);
+            Email = email;
+            FlagAtivo = true;
         }
 
-        public Usuario(UsuarioDto usuarioDto)
+        protected Usuario() { }
+
+        public void Atualizar(string nome, string usuarioLogin)
         {
-            Nome = usuarioDto.Nome;
-            Email = usuarioDto.Email;
-            Senha = EncryptPassword(usuarioDto.Senha);
-            Cpf = usuarioDto.Cpf;
-            Ativo = true;
-
-            //_enderecos = new List<UsuarioEndereco>();
-            _enderecos = usuarioDto.Enderecos.Select(x => new UsuarioEndereco(x)).ToList();
-
-            ValidarNome();
-            ValidarSenha(Senha, EncryptPassword(usuarioDto.ConfirmaSenha));
+            Nome = nome;
+            UsuarioLogin = usuarioLogin;
         }
 
-        public bool Autenticar(string email, string senha)
+        public void Autenticar(string senha)
         {
-            if (Email == email && Senha == EncryptPassword(senha))
-                return true;
-
-            AddNotification("Usuário", "Usuário ou senha inválidos");
-            return false;
+            var usuarioAutenticacaoValidatonContract = new UsuarioAutenticacaoValidationContract(this, senha);
+            AddNotifications(usuarioAutenticacaoValidatonContract.Contract.Notifications);
         }
 
-        public void AlterarSenha(string senhaAtual, string senhaNova, string confirmaSenhaNova)
+        public void AlterarSenha(string senhaAtual, string novaSenha, string confirmacaoNovaSenha)
         {
-            if (Senha != EncryptPassword(senhaAtual))
-            {
-                AddNotification("Usuário", "Senha atual não confere.");
+            var usuarioAlterarSenhaValidationContract = new UsuarioAlterarSenhaValidationContract(Senha, senhaAtual, novaSenha, confirmacaoNovaSenha);
+            AddNotifications(usuarioAlterarSenhaValidationContract.Contract.Notifications);
+
+            if (!IsValid)
                 return;
-            }
 
-            if (ValidarSenha(senhaNova, confirmaSenhaNova))
-                Senha = EncryptPassword(senhaNova);
+            Senha = Encrypt.EncryptPassword(novaSenha);
         }
 
-        public void Ativar() => Ativo = true;
-        public void Desativar() => Ativo = false;
-
-        public void AdicionarEndereco(UsuarioEndereco usuarioEndereco)
+        public void AlterarEmail(string email)
         {
-            AddNotifications(usuarioEndereco.Notifications);
-            if (usuarioEndereco.IsValid())
-                _enderecos.Add(usuarioEndereco);
+            var usuarioAlterarEmailValidationContract = new UsuarioAlterarEmailValidationContract(email);
+            AddNotifications(usuarioAlterarEmailValidationContract.Contract.Notifications);
+
+            if (!IsValid)
+                return;
+
+            Email = email;
         }
 
-        private void ValidarNome()
-        {
-            new ValidationContract<Usuario>(this)
-                .IsNull(Nome, "Nome deve ser preenchido")
-                .HasMinLenght(p => p.Nome, 5, "Tamanho mínimo é de 5 caracteres")
-                .HasMaxLenght(p => p.Nome, 150, "Tamanho máximo de 150 caracteres");
-        }
-
-        private bool ValidarSenha(string senha, string confirmaSenha)
-        {
-            if (senha == confirmaSenha)
-                return true;
-
-            AddNotification("Usuário", "As senhas não conferem.");
-            return false;
-        }
-
-        private string EncryptPassword(string pass)
-        {
-            if (string.IsNullOrEmpty(pass))
-                return "";
-            var password = (pass += "|2d331cca-f6c0-40c0-bb43-6e32989c2881");
-            var md5 = System.Security.Cryptography.MD5.Create();
-            var data = md5.ComputeHash(Encoding.Default.GetBytes(password));
-            var sbString = new StringBuilder();
-            foreach (var t in data)
-                sbString.Append(t.ToString("x2"));
-
-            return sbString.ToString();
-        }
+        public void Ativar() => FlagAtivo = true;
+        public void Desativar() => FlagAtivo = false;
     }
 }

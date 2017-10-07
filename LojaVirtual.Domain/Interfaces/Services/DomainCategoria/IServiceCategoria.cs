@@ -1,15 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using LojaVirtual.Domain.Entities.DomainCategoria;
+using LojaVirtual.Domain.DTOs.Base;
+using LojaVirtual.Domain.DTOs.DomainCategoria;
+using LojaVirtual.Domain.Interfaces.Services.Base;
 
 namespace LojaVirtual.Domain.Interfaces.Services.DomainCategoria
 {
-    public interface IServiceCategoria : IDisposable
+    public interface IServiceCategoria : IServiceBase
     {
-        IEnumerable<Categoria> Listar();
-        Categoria ObterPorId(Guid id);
-        void Adicionar(Categoria categoria);
-        void Atualizar(Categoria categoria);
-        void Remover(Guid id);
+        IEnumerable<ListarResponse> Listar();
+        ListarResponse ObterPorId(Guid id);
+        AdicionarResponse Adicionar(AdicionarRequest request);
+        ResponseBase Atualizar(AtualizarRequest request);
+        ResponseBase Remover(Guid id);
     }
 }

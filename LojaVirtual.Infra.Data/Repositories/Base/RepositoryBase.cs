@@ -19,12 +19,12 @@ namespace LojaVirtual.Infra.Data.Repositories.Base
             DbSet = Context.Set<TEntity>();
         }
 
-        public virtual IEnumerable<TEntity> ListarTodos()
+        public virtual IEnumerable<TEntity> ListarEntidades()
         {
             return DbSet.AsNoTracking().ToList();
         }
 
-        public virtual TEntity ObterPorId(Guid id)
+        public virtual TEntity ObterEntidade(Guid id)
         {
             return DbSet.Find(id);
         }
@@ -34,6 +34,12 @@ namespace LojaVirtual.Infra.Data.Repositories.Base
             return DbSet.Any(where);
         }
 
+        public virtual bool Existe(Guid id)
+        {
+            var entity = DbSet.Find(id);
+            return entity != null;
+        }
+
         public virtual void Adicionar(TEntity entity)
         {
             DbSet.Add(entity);
@@ -41,11 +47,19 @@ namespace LojaVirtual.Infra.Data.Repositories.Base
 
         public virtual void Atualizar(TEntity entity)
         {
-            DbSet.AddOrUpdate(entity);
+            //DbSet.AddOrUpdate(entity);
+            var entry = Context.Entry(entity);
+
+            //Necessário essa condição, pois podemos ter recuperado a entidade usando o Dapper
+            if (entry.State == EntityState.Detached)
+                DbSet.Attach(entity);
+
+            entry.State = EntityState.Modified;
         }
 
         public virtual void Remover(TEntity entity)
         {
+            DbSet.Attach(entity);
             DbSet.Remove(entity);
         }
 

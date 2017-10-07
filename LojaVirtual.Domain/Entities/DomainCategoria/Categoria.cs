@@ -1,8 +1,22 @@
-﻿namespace LojaVirtual.Domain.Entities.DomainCategoria
+﻿using LojaVirtual.Domain.Base;
+
+namespace LojaVirtual.Domain.Entities.DomainCategoria
 {
-    public class Categoria
+    public class Categoria : EntityBase
     {
-        public int Id { get; set; }
-        public string Descricao { get; set; }
+        public string Descricao { get; private set; }
+
+        //Construtor EF
+        protected Categoria() {}
+
+        public Categoria(string descricao)
+        {
+            Descricao = descricao;
+        }
+
+        public void Atualizar(string descricao)
+        {
+            Descricao = descricao;
+        }
     }
 }

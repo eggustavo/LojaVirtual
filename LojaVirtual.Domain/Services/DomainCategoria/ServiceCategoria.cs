@@ -1,5 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using FluentValidator;
+using LojaVirtual.Domain.Contracts.DomainCategoria;
+using LojaVirtual.Domain.DTOs.Base;
+using LojaVirtual.Domain.DTOs.DomainCategoria;
 using LojaVirtual.Domain.Entities.DomainCategoria;
 using LojaVirtual.Domain.Interfaces.Repositories.DomainCategoria;
 using LojaVirtual.Domain.Interfaces.Services.DomainCategoria;
@@ -19,38 +23,99 @@ namespace LojaVirtual.Domain.Services.DomainCategoria
             _repositoryCategoria = repositoryCategoria;
         }
 
-        public IEnumerable<Categoria> Listar()
+        public IEnumerable<ListarResponse> Listar()
         {
-            return _repositoryCategoria.ListarTodos();
+            return _repositoryCategoria.Listar();
         }
 
-        public Categoria ObterPorId(Guid id)
-        {
-            return _repositoryCategoria.ObterPorId(id);
-        }
-
-        public void Adicionar(Categoria categoria)
-        {
-            categoria.Id = 1;
-            _repositoryCategoria.Adicionar(categoria);
-            Commit();
-        }
-
-        public void Atualizar(Categoria categoria)
-        {
-            _repositoryCategoria.Atualizar(categoria);
-            Commit();
-        }
-
-        public void Remover(Guid id)
+        public ListarResponse ObterPorId(Guid id)
         {
             var categoria = _repositoryCategoria.ObterPorId(id);
 
+            if (categoria != null)
+                return categoria;
+
+            AddNotification("Categoria", "Categoria não Localizada!");
+            return null;
+        }
+
+        public AdicionarResponse Adicionar(AdicionarRequest request)
+        {
+            if (request == null)
+            {
+                AddNotification("Adicionar", "Objeto 'AdicionarRequest' é obrigatório");
+                return null;
+            }
+
+            var categoria = new Categoria(request.Descricao);
+            var categoriaAdicionarValidationContract = new CategoriaAdicionarValidationContract(categoria);
+            AddNotifications(categoriaAdicionarValidationContract.Contract.Notifications);
+
+            if (!IsValid)
+                return null;
+
+            _repositoryCategoria.Adicionar(categoria);
+            Commit();
+
+            return new AdicionarResponse
+            {
+                Id = categoria.Id
+            };
+        }
+
+        public ResponseBase Atualizar(AtualizarRequest request)
+        {
+            if (request == null)
+            {
+                AddNotification("Atualizar", "Objeto 'AtualizarRequest' é obrigatório");
+                return null;
+            }
+
+            var categoria = _repositoryCategoria.ObterEntidade(request.Id);
             if (categoria == null)
-                return;
+            {
+                AddNotification("Categoria", "Categoria não Localizada!");
+                return null;
+            }
+
+            categoria.Atualizar(request.Descricao);
+            var categoriaAtualizarValidationContract = new CategoriaAtualizarValidationContract(categoria);
+            AddNotifications(categoriaAtualizarValidationContract.Contract.Notifications);
+
+            if (!IsValid)
+                return null;
+
+            _repositoryCategoria.Atualizar(categoria);
+            Commit();
+
+            return new ResponseBase
+            {
+                Message = "Categoria Alterada com Sucesso"
+            };
+        }
+
+        public ResponseBase Remover(Guid id)
+        {
+            var categoria = _repositoryCategoria.ObterEntidade(id);
+
+            if (categoria == null)
+            {
+                AddNotification("Categoria", "Categoria não Localizada!");
+                return null;
+            }
 
             _repositoryCategoria.Remover(categoria);
             Commit();
+
+            return new ResponseBase
+            {
+                Message = "Categoria Excluída com Sucesso"
+            };
+        }
+
+        public IReadOnlyCollection<Notification> GetNotifications()
+        {
+            return Notifications;
         }
 
         public void Dispose()

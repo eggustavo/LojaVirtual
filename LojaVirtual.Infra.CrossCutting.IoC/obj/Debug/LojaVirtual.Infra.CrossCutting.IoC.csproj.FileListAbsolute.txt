@@ -42,3 +42,13 @@ C:\Eduardo\Projetos\LojaVirtualApoio\LojaVirtual\LojaVirtual.Infra.CrossCutting.
 C:\Eduardo\Projetos\LojaVirtualApoio\LojaVirtual\LojaVirtual.Infra.CrossCutting.IoC\obj\Debug\LojaVirtual.Infra.CrossCutting.IoC.csprojResolveAssemblyReference.cache
 C:\Eduardo\Projetos\LojaVirtualApoio\LojaVirtual\LojaVirtual.Infra.CrossCutting.IoC\obj\Debug\LojaVirtual.Infra.CrossCutting.IoC.dll
 C:\Eduardo\Projetos\LojaVirtualApoio\LojaVirtual\LojaVirtual.Infra.CrossCutting.IoC\obj\Debug\LojaVirtual.Infra.CrossCutting.IoC.pdb
+C:\LojaVirtualApoio\LojaVirtual\LojaVirtual.Infra.CrossCutting.IoC\obj\Debug\LojaVirtual.Infra.CrossCutting.IoC.csproj.CoreCompileInputs.cache
+C:\LojaVirtualApoio\LojaVirtual\LojaVirtual.Infra.CrossCutting.IoC\bin\Debug\LojaVirtual.Infra.CrossCutting.IoC.dll.config
+C:\LojaVirtualApoio\LojaVirtual\LojaVirtual.Infra.CrossCutting.IoC\bin\Debug\Dapper.dll
+C:\LojaVirtualApoio\LojaVirtual\LojaVirtual.Infra.CrossCutting.IoC\bin\Debug\LojaVirtual.Domain.dll.config
+C:\LojaVirtualApoio\LojaVirtual\LojaVirtual.Infra.CrossCutting.IoC\bin\Debug\Dapper.xml
+C:\Eduardo\Projetos\LojaVirtualApoio\LojaVirtual\LojaVirtual.Infra.CrossCutting.IoC\bin\Debug\LojaVirtual.Infra.CrossCutting.IoC.dll.config
+C:\Eduardo\Projetos\LojaVirtualApoio\LojaVirtual\LojaVirtual.Infra.CrossCutting.IoC\bin\Debug\Dapper.dll
+C:\Eduardo\Projetos\LojaVirtualApoio\LojaVirtual\LojaVirtual.Infra.CrossCutting.IoC\bin\Debug\LojaVirtual.Domain.dll.config
+C:\Eduardo\Projetos\LojaVirtualApoio\LojaVirtual\LojaVirtual.Infra.CrossCutting.IoC\bin\Debug\Dapper.xml
+C:\Eduardo\Projetos\LojaVirtualApoio\LojaVirtual\LojaVirtual.Infra.CrossCutting.IoC\obj\Debug\LojaVirtual.Infra.CrossCutting.IoC.csproj.CoreCompileInputs.cache

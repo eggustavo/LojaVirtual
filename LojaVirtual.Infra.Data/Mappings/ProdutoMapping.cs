@@ -13,20 +13,18 @@ namespace LojaVirtual.Infra.Data.Mappings
                 .HasMaxLength(200)
                 .IsRequired();
 
-            Property(p => p.Valor)
+            Property(p => p.Preco)
                 .HasPrecision(18, 2)
                 .IsRequired();
 
             Property(p => p.Imagem)
-                .HasMaxLength(200)
+                .HasMaxLength(1024)
                 .IsRequired();
 
             Property(p => p.QuantidadeEstoque)
                 .IsRequired();
 
-            HasRequired(x => x.Categoria)
-                .WithMany()
-                .Map(x => x.MapKey("CategoriaId"));
+            HasRequired(p => p.Categoria).WithMany().Map(m => m.MapKey("CategoriaId"));
 
             ToTable("LV_Produto");
         }

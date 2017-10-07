@@ -3,9 +3,9 @@
 
     angular.module('LV').controller('categoriaListCtrl', categoriaListController);
 
-    categoriaListController.$inject = ['categoriaFactory'];
+    categoriaListController.$inject = ['categoriaFactory', 'message'];
 
-    function categoriaListController(categoriaFactory) {
+    function categoriaListController(categoriaFactory, message) {
         var vm = this;
 
         vm.colecaoCategoria = [];
@@ -23,11 +23,11 @@
                 .catch(errorCallback);
 
             function successCallback(response) {
-                vm.colecaoCategoria = response.data;
+                vm.colecaoCategoria = response.data.dataReturn;
             };
 
             function errorCallback(response) {
-                toastr.error('Ocorreu um erro ao processar a requisição: ' + response.data, 'Loja Virtual');
+                toastr.error('Ocorreu um erro ao processar a requisição: ' + message.getMessage(response), 'Loja Virtual');
             };
         };
 
@@ -39,11 +39,11 @@
             function successCallback(response) {
                 var idx = vm.colecaoCategoria.indexOf(categoria);
                 vm.colecaoCategoria.splice(idx, 1);
-                toastr.info("Categoria: " + categoia.id + ' - ' + categoria.nome + ". \n Foi excluído com Sucesso.")
+                toastr.info(message.getMessage(response));
             };
 
             function errorCallback(response) {
-                toastr.error('Ocorreu um erro ao processo a requisição: ' + response.data, 'Loja Virutal');
+                toastr.error('Ocorreu um erro ao processo a requisição: ' + message.getMessage(response), 'Loja Virutal');
             };
         };
     };

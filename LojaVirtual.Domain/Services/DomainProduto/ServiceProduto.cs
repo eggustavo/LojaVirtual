@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using FluentValidator;
+using LojaVirtual.Domain.Contracts.DomainProduto;
+using LojaVirtual.Domain.DTOs.Base;
 using LojaVirtual.Domain.DTOs.DomainProduto;
 using LojaVirtual.Domain.Entities.DomainProduto;
 using LojaVirtual.Domain.Interfaces.Repositories.DomainCategoria;
@@ -17,107 +18,110 @@ namespace LojaVirtual.Domain.Services.DomainProduto
         private readonly IRepositoryProduto _repositoryProduto;
         private readonly IRepositoryCategoria _repositoryCategoria;
 
-        public ServiceProduto(IUnitOfWork uow,
-            IRepositoryProduto repositoryProduto,
-            IRepositoryCategoria repositoryCategoria) 
+        public ServiceProduto(IRepositoryProduto repositoryProduto,
+            IRepositoryCategoria repositoryCategoria,
+            IUnitOfWork uow) 
             : base(uow)
         {
-            _repositoryCategoria = repositoryCategoria;
             _repositoryProduto = repositoryProduto;
+            _repositoryCategoria = repositoryCategoria;
         }
 
-        public IEnumerable<ProdutoDto> ListarTodos()
+        public IEnumerable<ListarResponse> Listar()
         {
-            return _repositoryProduto.ListarTodos().ToList().Select(prod => new ProdutoDto()
-            {
-                Id = prod.Id,
-                Descricao = prod.Descricao,
-                Valor = prod.Valor,
-                Imagem = prod.Imagem,
-                QuantidadeEstoque = prod.QuantidadeEstoque,
-                CategoriaId = prod.Categoria.Id
-            });
+            return _repositoryProduto.Listar();
         }
 
-        public IEnumerable<ProdutoDto> ListarPorCategoria(int categoriaId)
-        {
-            return _repositoryProduto.ListarPorCategoria(categoriaId).ToList().Select(prod => new ProdutoDto()
-            {
-                Id = prod.Id,
-                Descricao = prod.Descricao,
-                Valor = prod.Valor,
-                Imagem = prod.Imagem,
-                QuantidadeEstoque = prod.QuantidadeEstoque,
-                CategoriaId = prod.Categoria.Id
-            });
-        }
-
-        public ProdutoDto ObterPorId(Guid id)
+        public ListarResponse ObterPorId(Guid id)
         {
             var produto = _repositoryProduto.ObterPorId(id);
 
             if (produto != null)
-                return (ProdutoDto) produto;
+                return produto;
 
-            AddNotification("Produto", "Produto não localizado!");
+            AddNotification("Produto", "Produto não Localizado!");
             return null;
         }
 
-        public void Adicionar(ProdutoDto produtoDto)
+        public AdicionarResponse Adicionar(AdicionarRequest request)
         {
-            if (produtoDto == null)
+            if (request == null)
             {
-                AddNotification("Adicionar Produto","Objeto Produto é obrigatório");
-                return;
+                AddNotification("Adicionar", "Objeto 'AdicionarRequest' é obrigatório");
+                return null;
             }
 
-            var categoria = _repositoryCategoria.ObterPorId(produtoDto.CategoriaId);
+            var categoria = _repositoryCategoria.ObterEntidade(request.CategoriaId);
+            if (categoria == null)
+                AddNotification("Categoria", "Categoria não Localizada!");
 
-            var produto = new Produto(produtoDto.Descricao, produtoDto.Valor, produtoDto.Imagem, produtoDto.QuantidadeEstoque, categoria);
+            var produto = new Produto(request.Descricao, request.Preco, request.Imagem, request.QuantidadeEstoque, categoria);
+            var produtoAdicionarValidationContract = new ProdutoAdicionarValidationContract(produto);
+            AddNotifications(produtoAdicionarValidationContract.Contract.Notifications);
 
-            AddNotifications(produto.Notifications);
-
-            if (!IsValid())
-                return;
+            if (!IsValid)
+                return null;
 
             _repositoryProduto.Adicionar(produto);
             Commit();
+
+            return new AdicionarResponse
+            {
+                Id = produto.Id
+            };
         }
 
-        public void Atualizar(ProdutoDto produtoDto)
+        public ResponseBase Atualizar(AtualizarRequest request)
         {
-            if (produtoDto == null)
+            if (request == null)
             {
-                AddNotification("Atualizar Produto", "Objeto Produto é obrigatório");
-                return;
+                AddNotification("Adicionar", "Objeto 'AdicionarRequest' é obrigatório");
+                return null;
             }
 
-            var categoria = _repositoryCategoria.ObterPorId(produtoDto.CategoriaId);
-            var produto = _repositoryProduto.ObterPorId(produtoDto.Id);
+            var produto = _repositoryProduto.ObterEntidade(request.Id);
+            if (produto == null)
+            {
+                AddNotification("Produto", "Produto não Localizado!");
+                return null;
+            }
 
-            produto.Atualizar(produtoDto.Descricao, produtoDto.Valor, produtoDto.Imagem, categoria);
+            var categoria = _repositoryCategoria.ObterEntidade(request.CategoriaId);
+            if (categoria == null)
+                AddNotification("Categoria", "Categoria não Localizada!");
 
-            AddNotifications(produto.Notifications);
+            produto.Atualizar(request.Descricao, request.Preco, request.Imagem, request.QuantidadeEstoque, categoria);
+            var produtoAtualizarValidationContract = new ProdutoAtualizarValidationContract(produto);
+            AddNotifications(produtoAtualizarValidationContract.Contract.Notifications);
 
-            if (!IsValid())
-                return;
+            if (!IsValid)
+                return null;
 
             _repositoryProduto.Atualizar(produto);
             Commit();
+
+            return new ResponseBase
+            {
+                Message = "Produto Alterado com Sucesso"
+            };
         }
 
-        public void Remover(Guid id)
+        public ResponseBase Remover(Guid id)
         {
-            var produto = _repositoryProduto.ObterPorId(id);
-
+            var produto = _repositoryProduto.ObterEntidade(id);
             if (produto == null)
             {
-                AddNotification("Remover Produto", "Produto não localizado");
-                return;
+                AddNotification("Produto", "Produto não Localizado!");
+                return null;
             }
 
             _repositoryProduto.Remover(produto);
             Commit();
+
+            return new ResponseBase
+            {
+                Message = "Produto Excluído com Sucesso"
+            };
         }
 
         public IReadOnlyCollection<Notification> GetNotifications()

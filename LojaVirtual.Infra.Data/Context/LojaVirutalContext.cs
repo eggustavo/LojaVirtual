@@ -1,6 +1,8 @@
 ﻿using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using LojaVirtual.Domain.Entities.DomainCategoria;
+using LojaVirtual.Domain.Entities.DomainProduto;
+using LojaVirtual.Domain.Entities.DomainUsuario;
 using LojaVirtual.Infra.Data.Mappings;
 
 namespace LojaVirtual.Infra.Data.Context
@@ -12,10 +14,12 @@ namespace LojaVirtual.Infra.Data.Context
         {
             Configuration.LazyLoadingEnabled = false;
             Configuration.ProxyCreationEnabled = false;
-            //Configuration.AutoDetectChangesEnabled = false;
+            Configuration.AutoDetectChangesEnabled = false;
         }
 
         public DbSet<Categoria> CategoriaSet { get; set; }
+        public DbSet<Produto> ProdutoSet { get; set; }
+        public DbSet<Usuario> UsuarioSet { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -36,6 +40,7 @@ namespace LojaVirtual.Infra.Data.Context
             //3 - Configurações de Mapeamento
             modelBuilder.Configurations.Add(new CategoriaMapping());
             modelBuilder.Configurations.Add(new ProdutoMapping());
+            modelBuilder.Configurations.Add(new UsuarioMapping());
 
             base.OnModelCreating(modelBuilder);
         }

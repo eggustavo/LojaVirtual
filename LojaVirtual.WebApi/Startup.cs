@@ -1,5 +1,6 @@
 ﻿using System.Web.Http;
 using LojaVirtual.Infra.CrossCutting.IoC;
+using Microsoft.Owin.Cors;
 using Microsoft.Practices.Unity;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
@@ -22,6 +23,7 @@ namespace LojaVirtual.WebApi
             ConfigurarIoC(config, container);
             ConfigurarWebApi(config);
 
+            app.UseCors(CorsOptions.AllowAll);
             app.UseWebApi(config);
         }
 
