@@ -1,6 +1,4 @@
 ﻿using FluentValidator.Validation;
-using LojaVirtual.Domain.Base;
-using LojaVirtual.Domain.Entities.DomainUsuario;
 
 namespace LojaVirtual.Domain.Contracts.DomainUsuario
 {
@@ -15,7 +13,7 @@ namespace LojaVirtual.Domain.Contracts.DomainUsuario
                 .Requires()
                 .IsNotNull(email, "Email", "O Email deve ser preenchido");
 
-            if (Contract.IsValid)
+            if (Contract.Valid)
             {
                 Contract
                     .Requires()

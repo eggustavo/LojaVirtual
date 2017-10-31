@@ -1,6 +1,11 @@
-﻿using System.Web.Http;
+﻿using System;
+using System.Web.Http;
+using LojaVirtual.Domain.Interfaces.Services.DomainUsuario;
 using LojaVirtual.Infra.CrossCutting.IoC;
+using LojaVirtual.WebApi.OAuthProvider;
+using Microsoft.Owin;
 using Microsoft.Owin.Cors;
+using Microsoft.Owin.Security.OAuth;
 using Microsoft.Practices.Unity;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
@@ -22,6 +27,7 @@ namespace LojaVirtual.WebApi
 
             ConfigurarIoC(config, container);
             ConfigurarWebApi(config);
+            ConfigureOAuth(app, container.Resolve<IServiceUsuario>());
 
             app.UseCors(CorsOptions.AllowAll);
             app.UseWebApi(config);
@@ -46,6 +52,20 @@ namespace LojaVirtual.WebApi
             jsonSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
 
             config.MapHttpAttributeRoutes();
+        }
+
+        private void ConfigureOAuth(IAppBuilder app, IServiceUsuario serviceUsuario)
+        {
+            var oAuthServerOptions = new OAuthAuthorizationServerOptions()
+            {
+                AllowInsecureHttp = true,
+                TokenEndpointPath = new PathString("/api/v1/usuario/token"),
+                AccessTokenExpireTimeSpan = TimeSpan.FromDays(30),
+                Provider = new SimpleAuthorizationServerProvider(serviceUsuario)
+            };
+
+            app.UseOAuthAuthorizationServer(oAuthServerOptions);
+            app.UseOAuthBearerAuthentication(new OAuthBearerAuthenticationOptions());
         }
     }
 }

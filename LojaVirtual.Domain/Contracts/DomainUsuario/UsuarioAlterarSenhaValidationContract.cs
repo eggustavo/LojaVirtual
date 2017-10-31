@@ -1,6 +1,5 @@
 ﻿using FluentValidator.Validation;
 using LojaVirtual.Domain.Base;
-using LojaVirtual.Domain.Entities.DomainUsuario;
 
 namespace LojaVirtual.Domain.Contracts.DomainUsuario
 {

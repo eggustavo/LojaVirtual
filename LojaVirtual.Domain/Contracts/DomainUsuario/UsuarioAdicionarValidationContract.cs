@@ -18,7 +18,7 @@ namespace LojaVirtual.Domain.Contracts.DomainUsuario
                 .IsNotNull(usuario.Senha, "Senha", "A Senha deve ser preenchida")
                 .IsNotNull(usuario.Email, "Email", "O Email deve ser preenchido");
 
-            if (Contract.IsValid)
+            if (Contract.Valid)
             {
                 Contract
                     .Requires()

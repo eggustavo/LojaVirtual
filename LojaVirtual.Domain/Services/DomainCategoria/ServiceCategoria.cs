@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using FluentValidator;
-using LojaVirtual.Domain.Contracts.DomainCategoria;
 using LojaVirtual.Domain.DTOs.Base;
 using LojaVirtual.Domain.DTOs.DomainCategoria;
 using LojaVirtual.Domain.Entities.DomainCategoria;
@@ -48,10 +47,13 @@ namespace LojaVirtual.Domain.Services.DomainCategoria
             }
 
             var categoria = new Categoria(request.Descricao);
-            var categoriaAdicionarValidationContract = new CategoriaAdicionarValidationContract(categoria);
-            AddNotifications(categoriaAdicionarValidationContract.Contract.Notifications);
 
-            if (!IsValid)
+            //var categoriaAdicionarValidationContract = new CategoriaAdicionarValidationContract(categoria);
+            //AddNotifications(categoriaAdicionarValidationContract.Contract.Notifications);
+
+            AddNotifications(categoria.Notifications);
+
+            if (Invalid)
                 return null;
 
             _repositoryCategoria.Adicionar(categoria);
@@ -79,10 +81,13 @@ namespace LojaVirtual.Domain.Services.DomainCategoria
             }
 
             categoria.Atualizar(request.Descricao);
-            var categoriaAtualizarValidationContract = new CategoriaAtualizarValidationContract(categoria);
-            AddNotifications(categoriaAtualizarValidationContract.Contract.Notifications);
 
-            if (!IsValid)
+            //var categoriaAtualizarValidationContract = new CategoriaAtualizarValidationContract(categoria);
+            //AddNotifications(categoriaAtualizarValidationContract.Contract.Notifications);
+            
+            AddNotifications(categoria.Notifications);
+
+            if (Invalid)
                 return null;
 
             _repositoryCategoria.Atualizar(categoria);

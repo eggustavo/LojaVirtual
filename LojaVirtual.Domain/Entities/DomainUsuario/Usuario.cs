@@ -1,5 +1,4 @@
-﻿using System.CodeDom;
-using LojaVirtual.Domain.Base;
+﻿using LojaVirtual.Domain.Base;
 using LojaVirtual.Domain.Contracts.DomainUsuario;
 
 namespace LojaVirtual.Domain.Entities.DomainUsuario
@@ -29,10 +28,11 @@ namespace LojaVirtual.Domain.Entities.DomainUsuario
             UsuarioLogin = usuarioLogin;
         }
 
-        public void Autenticar(string senha)
+        public bool Autenticar(string senha)
         {
             var usuarioAutenticacaoValidatonContract = new UsuarioAutenticacaoValidationContract(this, senha);
-            AddNotifications(usuarioAutenticacaoValidatonContract.Contract.Notifications);
+            //AddNotifications(usuarioAutenticacaoValidatonContract.Contract.Notifications);
+            return usuarioAutenticacaoValidatonContract.Contract.Valid;
         }
 
         public void AlterarSenha(string senhaAtual, string novaSenha, string confirmacaoNovaSenha)
@@ -40,7 +40,7 @@ namespace LojaVirtual.Domain.Entities.DomainUsuario
             var usuarioAlterarSenhaValidationContract = new UsuarioAlterarSenhaValidationContract(Senha, senhaAtual, novaSenha, confirmacaoNovaSenha);
             AddNotifications(usuarioAlterarSenhaValidationContract.Contract.Notifications);
 
-            if (!IsValid)
+            if (Invalid)
                 return;
 
             Senha = Encrypt.EncryptPassword(novaSenha);
@@ -51,7 +51,7 @@ namespace LojaVirtual.Domain.Entities.DomainUsuario
             var usuarioAlterarEmailValidationContract = new UsuarioAlterarEmailValidationContract(email);
             AddNotifications(usuarioAlterarEmailValidationContract.Contract.Notifications);
 
-            if (!IsValid)
+            if (Invalid)
                 return;
 
             Email = email;

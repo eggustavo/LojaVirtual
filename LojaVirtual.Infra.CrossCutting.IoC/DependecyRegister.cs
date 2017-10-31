@@ -1,15 +1,19 @@
 ﻿using LojaVirtual.Domain.Interfaces.Repositories.DomainCategoria;
+using LojaVirtual.Domain.Interfaces.Repositories.DomainPedido;
 using LojaVirtual.Domain.Interfaces.Repositories.DomainProduto;
 using LojaVirtual.Domain.Interfaces.Repositories.DomainUsuario;
 using LojaVirtual.Domain.Interfaces.Services.DomainCategoria;
+using LojaVirtual.Domain.Interfaces.Services.DomainPedido;
 using LojaVirtual.Domain.Interfaces.Services.DomainProduto;
 using LojaVirtual.Domain.Interfaces.Services.DomainUsuario;
 using LojaVirtual.Domain.Interfaces.UoW;
 using LojaVirtual.Domain.Services.DomainCategoria;
+using LojaVirtual.Domain.Services.DomainPedido;
 using LojaVirtual.Domain.Services.DomainProduto;
 using LojaVirtual.Domain.Services.DomainUsuario;
 using LojaVirtual.Infra.Data.Context;
 using LojaVirtual.Infra.Data.Repositories.DomainCategoira;
+using LojaVirtual.Infra.Data.Repositories.DomainPedido;
 using LojaVirtual.Infra.Data.Repositories.DomainProduto;
 using LojaVirtual.Infra.Data.Repositories.DomainUsuario;
 using LojaVirtual.Infra.Data.UoW;
@@ -29,11 +33,13 @@ namespace LojaVirtual.Infra.CrossCutting.IoC
             container.RegisterType<IRepositoryCategoria, RepositoryCategoria>(new HierarchicalLifetimeManager());
             container.RegisterType<IRepositoryProduto, RepositoryProduto>(new HierarchicalLifetimeManager());
             container.RegisterType<IRepositoryUsuario, RepositoryUsuario>(new HierarchicalLifetimeManager());
-
+            container.RegisterType<IRepositoryPedido, RepositoryPedido>(new HierarchicalLifetimeManager());
+            
             //Service
             container.RegisterType<IServiceCategoria, ServiceCategoria>(new HierarchicalLifetimeManager());
             container.RegisterType<IServiceProduto, ServiceProduto>(new HierarchicalLifetimeManager());
             container.RegisterType<IServiceUsuario, ServiceUsuario>(new HierarchicalLifetimeManager());
+            container.RegisterType<IServicePedido, ServicePedido>(new HierarchicalLifetimeManager());
         }
     }
 }

@@ -59,7 +59,7 @@ namespace LojaVirtual.Domain.Services.DomainProduto
             var produtoAdicionarValidationContract = new ProdutoAdicionarValidationContract(produto);
             AddNotifications(produtoAdicionarValidationContract.Contract.Notifications);
 
-            if (!IsValid)
+            if (Invalid)
                 return null;
 
             _repositoryProduto.Adicionar(produto);
@@ -94,7 +94,7 @@ namespace LojaVirtual.Domain.Services.DomainProduto
             var produtoAtualizarValidationContract = new ProdutoAtualizarValidationContract(produto);
             AddNotifications(produtoAtualizarValidationContract.Contract.Notifications);
 
-            if (!IsValid)
+            if (Invalid)
                 return null;
 
             _repositoryProduto.Atualizar(produto);

@@ -63,20 +63,24 @@ namespace LojaVirtual.WebApi
                         // you'll need to implement a custom IDocumentFilter and/or IOperationFilter to set these properties
                         // according to your specific authorization implementation
                         //
+                        c.DocumentFilter<AuthTokenOperation>();
+                        //
                         //c.BasicAuth("basic").Description("Basic HTTP Authentication");
                         //
-                        //c.ApiKey("apiKey", "header", "API Key Authentication");
+                        c.ApiKey("apiKey", "header", "API Key Authentication");
                         //
                         //c.OAuth2("oauth2")
                         //    .Description("OAuth2 Implicit Grant")
                         //    .Flow("implicit")
-                        //    .AuthorizationUrl("http://petstore.swagger.wordnik.com/api/oauth/dialog")
+                        //    .AuthorizationUrl("/api/v1/usuario/token");
                         //    //.TokenUrl("https://tempuri.org/token")
                         //    .Scopes(scopes =>
                         //    {
                         //        scopes.Add("read", "Read access to protected resources");
                         //        scopes.Add("write", "Write access to protected resources");
                         //    });
+
+
 
                         // Set this flag to omit descriptions for any actions decorated with the Obsolete attribute
                         //c.IgnoreObsoleteActions();
@@ -323,6 +327,47 @@ namespace LojaVirtual.WebApi
                         }
                     }
                 }
+            }
+        }
+
+        private class AuthTokenOperation : IDocumentFilter
+        {
+            public void Apply(SwaggerDocument swaggerDoc, SchemaRegistry schemaRegistry, IApiExplorer apiExplorer)
+            {
+                swaggerDoc.paths.Add("/api/v1/usuario/token", new PathItem
+                {
+                    post = new Operation
+                    {
+                        tags = new List<string> { "Usuario" },
+                        consumes = new List<string>
+                        {
+                            "application/x-www-form-urlencoded"
+                        },
+                        parameters = new List<Parameter> {
+                            new Parameter
+                            {
+                                type = "string",
+                                name = "grant_type",
+                                required = true,
+                                @in = "formData"
+                            },
+                            new Parameter
+                            {
+                                type = "string",
+                                name = "username",
+                                required = true,
+                                @in = "formData"
+                            },
+                            new Parameter
+                            {
+                                type = "string",
+                                name = "password",
+                                required = true,
+                                @in = "formData"
+                            }
+                        }
+                    }
+                });
             }
         }
     }

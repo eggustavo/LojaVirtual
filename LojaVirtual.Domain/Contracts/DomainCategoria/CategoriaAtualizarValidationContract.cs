@@ -14,7 +14,7 @@ namespace LojaVirtual.Domain.Contracts.DomainCategoria
                 .Requires()
                 .IsNotNull(categoria.Descricao, "Descricao", "A Descrição deve ser preenchida");
 
-            if (Contract.IsValid)
+            if (Contract.Valid)
             {
                 Contract
                     .Requires()

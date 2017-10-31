@@ -15,7 +15,7 @@ namespace LojaVirtual.Domain.Contracts.DomainProduto
                 .IsNotNull(produto.Descricao, "Descricao", "A Descrição deve ser preenchida")
                 .IsNotNull(produto.Imagem, "Imagem", "Imagem deve ser inserida");
 
-            if (Contract.IsValid)
+            if (Contract.Valid)
             {
                 Contract
                     .Requires()

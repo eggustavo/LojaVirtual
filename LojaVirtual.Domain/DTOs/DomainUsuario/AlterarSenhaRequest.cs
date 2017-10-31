@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace LojaVirtual.Domain.DTOs.DomainUsuario
+﻿namespace LojaVirtual.Domain.DTOs.DomainUsuario
 {
     public class AlterarSenhaRequest
     {

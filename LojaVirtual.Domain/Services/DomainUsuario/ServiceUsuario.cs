@@ -51,7 +51,7 @@ namespace LojaVirtual.Domain.Services.DomainUsuario
             var usuarioAdicionarValidationContract = new UsuarioAdicionarValidationContract(usuario, request.ConfirmarSenha);
             AddNotifications(usuarioAdicionarValidationContract.Contract.Notifications);
 
-            if (!IsValid)
+            if (Invalid)
                 return null;
 
             _repositoryUsuario.Adicionar(usuario);
@@ -82,7 +82,7 @@ namespace LojaVirtual.Domain.Services.DomainUsuario
             var usuarioAtualizarValidationContract = new UsuarioAtualizarValidationContract(usuario);
             AddNotifications(usuarioAtualizarValidationContract.Contract.Notifications);
 
-            if (!IsValid)
+            if (Invalid)
                 return null;
 
             _repositoryUsuario.Atualizar(usuario);
@@ -128,13 +128,17 @@ namespace LojaVirtual.Domain.Services.DomainUsuario
                 return null;
             }
 
-            usuario.Autenticar(request.Senha);
-            AddNotifications(usuario.Notifications);
+            //usuario.Autenticar(request.Senha);
+            //AddNotifications(usuario.Notifications);
 
-            //var usuarioAutenticacaoValidationContract = new UsuarioAutenticacaoValidationContract(usuario, request.Senha);
-            //AddNotifications(usuarioAutenticacaoValidationContract.Contract.Notifications);
+            ////var usuarioAutenticacaoValidationContract = new UsuarioAutenticacaoValidationContract(usuario, request.Senha);
+            ////AddNotifications(usuarioAutenticacaoValidationContract.Contract.Notifications);
 
-            if (!IsValid)
+            //if (!IsValid)
+            //    return null;
+
+            //Feito dessa forma, pois o processo de autenticação do OAuth não liberar os objetos envolvidos do contexto
+            if (!usuario.Autenticar(request.Senha))
                 return null;
 
             return _repositoryUsuario.ObterPorId(usuario.Id);
@@ -159,7 +163,7 @@ namespace LojaVirtual.Domain.Services.DomainUsuario
             usuario.AlterarSenha(request.Senha, request.NovaSenha, request.ConfirmacaoNovaSenha);
             AddNotifications(usuario);
 
-            if (!IsValid)
+            if (Invalid)
                 return null;
 
             _repositoryUsuario.Atualizar(usuario);
@@ -195,7 +199,7 @@ namespace LojaVirtual.Domain.Services.DomainUsuario
             usuario.AlterarEmail(request.Email);
             AddNotifications(usuario);
 
-            if (!IsValid)
+            if (Invalid)
                 return null;
 
             _repositoryUsuario.Atualizar(usuario);

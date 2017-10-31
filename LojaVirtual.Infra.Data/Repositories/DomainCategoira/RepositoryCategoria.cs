@@ -30,7 +30,8 @@ namespace LojaVirtual.Infra.Data.Repositories.DomainCategoira
 
             var categoria = _context.Database.Connection.Query<Categoria>(sqlSelect, new {pId = id}).FirstOrDefault();
 
-            //É necessário porque estamos salvando pelo EntityFramework e isso faz com que ele não tente inserir a categoria novamente
+            //É necessário porque estamos salvando pelo EntityFramework e 
+            //isso faz com que ele não tente inserir a categoria novamente
             if (categoria != null)
                 DbSet.Attach(categoria);
 
