@@ -62,13 +62,6 @@
                 toastr.error('A imagem deve ser do tipo JPEG', 'Loja Virtual');                
             } else {
                 vm.produto.imagem = fileObj.base64;
-                //console.log('imagem: ', vm.produto.imagem);
-                //console.log('e: ', e);
-                //console.log('reader: ', reader);
-                //console.log('file: ', file);
-                //console.log('fileList: ', fileList);
-                ////console.log('fileObjects: ', fileObjects);
-                //console.log('fileObj: ', fileObj);
             };
         };        
     };

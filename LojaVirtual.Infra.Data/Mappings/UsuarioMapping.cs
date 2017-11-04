@@ -25,7 +25,35 @@ namespace LojaVirtual.Infra.Data.Mappings
                 .HasMaxLength(200)
                 .IsRequired();
 
-            Property(p => p.FlagAtivo)
+            Property(p => p.Cep)
+                .HasMaxLength(9)
+                .IsRequired();
+
+            Property(p => p.Logradouro)
+                .HasMaxLength(200)
+                .IsRequired();
+
+            Property(p => p.Numero)
+                .HasMaxLength(5)
+                .IsRequired();
+
+            Property(p => p.Complmento)
+                .HasMaxLength(100)
+                .IsOptional();
+
+            Property(p => p.Bairro)
+                .HasMaxLength(100)
+                .IsRequired();
+
+            Property(p => p.Municipio)
+                .HasMaxLength(100)
+                .IsRequired();
+
+            Property(p => p.Uf)
+                .HasMaxLength(2)
+                .IsRequired();
+
+            Property(p => p.FlagAdministrador)
                 .IsRequired();
 
             ToTable("LV_Usuario");

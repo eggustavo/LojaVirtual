@@ -1,8 +1,6 @@
 (function() {
     'use strict';
 
-    console.log('run');
-
     angular.module('LV').run(lojaVirtualRun);
 
     lojaVirtualRun.$inject = ['$rootScope', '$location', 'settings'];
@@ -36,12 +34,6 @@
         };
 
         $rootScope.$on("$routeChangeStart", function (event, next, current) {
-            //console.log('Event: ', event);
-            //console.log('Next: ', next);
-            //console.log('Current: ', current);
-            //console.log('Next Restrito: ', next.restrito);
-            //console.log('rootScopeUsuario: ', $rootScope.usuario);
-
             if (next.restrito && $rootScope.usuario == null) {
                 $location.path("/login");              
             };

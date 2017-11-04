@@ -1,4 +1,5 @@
-﻿using LojaVirtual.Domain.Base;
+﻿using System.Reflection.Emit;
+using LojaVirtual.Domain.Base;
 using LojaVirtual.Domain.Contracts.DomainUsuario;
 
 namespace LojaVirtual.Domain.Entities.DomainUsuario
@@ -9,15 +10,29 @@ namespace LojaVirtual.Domain.Entities.DomainUsuario
         public string UsuarioLogin { get; private set; }
         public string Senha { get; private set; }
         public string Email { get; private set; }
-        public bool FlagAtivo { get; private set; }
+        public string Cep { get; private set; }
+        public string Logradouro { get; private set; }
+        public string Numero { get; private set; }
+        public string Complmento { get; private set; }
+        public string Bairro { get; private set; }
+        public string Municipio { get; private set; }
+        public string Uf { get; private set; }
+        public bool FlagAdministrador { get; private set; }
 
-        public Usuario(string nome, string usuarioLogin, string senha, string email)
+        public Usuario(string nome, string usuarioLogin, string senha, string email, string cep, string logradouro, string numero, string complemento, string bairro, string municipio, string uf)
         {
             Nome = nome;
             UsuarioLogin = usuarioLogin;
             Senha = Encrypt.EncryptPassword(senha);
             Email = email;
-            FlagAtivo = true;
+            Cep = cep;
+            Logradouro = logradouro;
+            Numero = numero;
+            Complmento = complemento;
+            Bairro = bairro;
+            Municipio = municipio;
+            Uf = uf;
+            FlagAdministrador = false;
         }
 
         protected Usuario() { }
@@ -56,8 +71,5 @@ namespace LojaVirtual.Domain.Entities.DomainUsuario
 
             Email = email;
         }
-
-        public void Ativar() => FlagAtivo = true;
-        public void Desativar() => FlagAtivo = false;
     }
 }

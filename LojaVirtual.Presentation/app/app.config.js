@@ -1,8 +1,6 @@
 (function() {
     'use strict';
 
-    console.log('config');
-    
     angular.module('LV').config(config);      
     config.$inject = ['$routeProvider'];
 

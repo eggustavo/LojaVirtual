@@ -47,7 +47,7 @@ namespace LojaVirtual.Domain.Services.DomainUsuario
                 return null;
             }
 
-            var usuario = new Usuario(request.Nome, request.UsuarioLogin, request.Senha, request.Email);
+            var usuario = new Usuario(request.Nome, request.UsuarioLogin, request.Senha, request.Email, request.Cep, request.Logradouro, request.Numero, request.Complmento, request.Bairro, request.Municipio, request.Uf);
             var usuarioAdicionarValidationContract = new UsuarioAdicionarValidationContract(usuario, request.ConfirmarSenha);
             AddNotifications(usuarioAdicionarValidationContract.Contract.Notifications);
 
