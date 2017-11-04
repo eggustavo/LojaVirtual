@@ -32,6 +32,11 @@ namespace LojaVirtual.Domain.Services.DomainProduto
             return _repositoryProduto.Listar();
         }
 
+        public IEnumerable<ListarResponse> Listar(Guid categoriaId)
+        {
+            return _repositoryProduto.Listar(categoriaId);
+        }
+
         public ListarResponse ObterPorId(Guid id)
         {
             var produto = _repositoryProduto.ObterPorId(id);
@@ -67,7 +72,8 @@ namespace LojaVirtual.Domain.Services.DomainProduto
 
             return new AdicionarResponse
             {
-                Id = produto.Id
+                Id = produto.Id,
+                Message = "Produto Inserido com Sucesso!"
             };
         }
 
@@ -102,7 +108,7 @@ namespace LojaVirtual.Domain.Services.DomainProduto
 
             return new ResponseBase
             {
-                Message = "Produto Alterado com Sucesso"
+                Message = "Produto Alterado com Sucesso!"
             };
         }
 
@@ -120,7 +126,7 @@ namespace LojaVirtual.Domain.Services.DomainProduto
 
             return new ResponseBase
             {
-                Message = "Produto Excluído com Sucesso"
+                Message = "Produto Excluído com Sucesso!"
             };
         }
 

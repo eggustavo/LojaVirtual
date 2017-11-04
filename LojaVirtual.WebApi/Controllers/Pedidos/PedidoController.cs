@@ -8,6 +8,7 @@ using LojaVirtual.WebApi.Controllers.Base;
 
 namespace LojaVirtual.WebApi.Controllers.Pedidos
 {
+    [Authorize]
     [RoutePrefix("api")]
     public class PedidoController : BaseController
     {

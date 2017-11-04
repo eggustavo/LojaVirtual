@@ -9,6 +9,7 @@ namespace LojaVirtual.Domain.Interfaces.Repositories.DomainProduto
     public interface IRepositoryProduto : IRepositoryBase<Produto>
     {
         IEnumerable<ListarResponse> Listar();
+        IEnumerable<ListarResponse> Listar(Guid categoriaId);
         ListarResponse ObterPorId(Guid id);
     }
 }

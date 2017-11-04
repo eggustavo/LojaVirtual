@@ -61,7 +61,8 @@ namespace LojaVirtual.Domain.Services.DomainCategoria
 
             return new AdicionarResponse
             {
-                Id = categoria.Id
+                Id = categoria.Id,
+                Message = "Categoria Inserida com Sucesso!"
             };
         }
 
@@ -95,7 +96,7 @@ namespace LojaVirtual.Domain.Services.DomainCategoria
 
             return new ResponseBase
             {
-                Message = "Categoria Alterada com Sucesso"
+                Message = "Categoria Alterada com Sucesso!"
             };
         }
 
@@ -114,7 +115,7 @@ namespace LojaVirtual.Domain.Services.DomainCategoria
 
             return new ResponseBase
             {
-                Message = "Categoria Excluída com Sucesso"
+                Message = "Categoria Excluída com Sucesso!"
             };
         }
 

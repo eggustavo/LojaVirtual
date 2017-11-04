@@ -23,7 +23,6 @@ C:\Eduardo\Projetos\LojaVirtualApoio\LojaVirtual\LojaVirtual.Domain\bin\Debug\Sy
 C:\Eduardo\Projetos\LojaVirtualApoio\LojaVirtual\LojaVirtual.Domain\bin\Debug\System.Xml.ReaderWriter.dll
 C:\Eduardo\Projetos\LojaVirtualApoio\LojaVirtual\LojaVirtual.Domain\bin\Debug\System.Diagnostics.DiagnosticSource.xml
 C:\Eduardo\Projetos\LojaVirtualApoio\LojaVirtual\LojaVirtual.Domain\obj\Debug\LojaVirtual.Domain.csproj.CoreCompileInputs.cache
-C:\Eduardo\Projetos\LojaVirtualApoio\LojaVirtual\LojaVirtual.Domain\obj\Debug\LojaVirtual.Domain.csprojResolveAssemblyReference.cache
 C:\LojaVirtualApoio\LojaVirtual\LojaVirtual.Domain\bin\Debug\LojaVirtual.Domain.dll.config
 C:\LojaVirtualApoio\LojaVirtual\LojaVirtual.Domain\bin\Debug\LojaVirtual.Domain.dll
 C:\LojaVirtualApoio\LojaVirtual\LojaVirtual.Domain\bin\Debug\LojaVirtual.Domain.pdb
@@ -49,4 +48,4 @@ C:\LojaVirtualApoio\LojaVirtual\LojaVirtual.Domain\bin\Debug\System.Diagnostics.
 C:\LojaVirtualApoio\LojaVirtual\LojaVirtual.Domain\obj\Debug\LojaVirtual.Domain.csproj.CoreCompileInputs.cache
 C:\LojaVirtualApoio\LojaVirtual\LojaVirtual.Domain\obj\Debug\LojaVirtual.Domain.dll
 C:\LojaVirtualApoio\LojaVirtual\LojaVirtual.Domain\obj\Debug\LojaVirtual.Domain.pdb
-C:\LojaVirtualApoio\LojaVirtual\LojaVirtual.Domain\obj\Debug\LojaVirtual.Domain.csprojResolveAssemblyReference.cache
+C:\Eduardo\Projetos\LojaVirtualApoio\LojaVirtual\LojaVirtual.Domain\obj\Debug\LojaVirtual.Domain.csprojResolveAssemblyReference.cache

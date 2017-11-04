@@ -47,6 +47,7 @@ namespace LojaVirtual.WebApi.Controllers.Usuarios
             return CreateResponse(HttpStatusCode.Created, _serviceUsuario.Autenticar(request), _serviceUsuario.GetNotifications());
         }
 
+        [Authorize]
         [HttpPut]
         [Route("v1/usuario")]
         public Task<HttpResponseMessage> Atualizar(AtualizarRequest request)
@@ -54,6 +55,7 @@ namespace LojaVirtual.WebApi.Controllers.Usuarios
             return CreateResponse(HttpStatusCode.OK, _serviceUsuario.Atualizar(request), _serviceUsuario.GetNotifications());
         }
 
+        [Authorize]
         [HttpPut]
         [Route("v1/usuario/alterar-senha")]
         public Task<HttpResponseMessage> AlterarSenha(AlterarSenhaRequest request)
@@ -61,6 +63,7 @@ namespace LojaVirtual.WebApi.Controllers.Usuarios
             return CreateResponse(HttpStatusCode.OK, _serviceUsuario.AlterarSenha(request), _serviceUsuario.GetNotifications());
         }
 
+        [Authorize]
         [HttpPut]
         [Route("v1/usuario/alterar-email")]
         public Task<HttpResponseMessage> AlterarEmail(AlterarEmailRequest request)

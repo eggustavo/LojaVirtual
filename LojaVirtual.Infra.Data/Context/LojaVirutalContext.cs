@@ -37,8 +37,8 @@ namespace LojaVirtual.Infra.Data.Context
 
             //2 - Padronizando o tamanho do campo string no banco de dados, quando o mesmo não for configurado 
             //    dentro das classes de configuração
-            modelBuilder.Properties<string>()
-                .Configure(p => p.HasMaxLength(100));
+            //modelBuilder.Properties<string>()
+            //    .Configure(p => p.HasMaxLength(100));
 
             //3 - Configurações de Mapeamento
             modelBuilder.Configurations.Add(new CategoriaMapping());

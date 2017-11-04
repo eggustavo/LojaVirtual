@@ -1,4 +1,5 @@
 ﻿using LojaVirtual.Domain.Base;
+using LojaVirtual.Domain.Contracts.DomainPedido;
 using LojaVirtual.Domain.Entities.DomainProduto;
 
 namespace LojaVirtual.Domain.Entities.DomainPedido
@@ -16,8 +17,20 @@ namespace LojaVirtual.Domain.Entities.DomainPedido
         public PedidoItem(Produto produto, int quantidade)
         {
             Produto = produto;
+
+            var pedidoItemAdicionarValidationContract = new PedidoItemAdicionarValidationContract(this);
+
+            pedidoItemAdicionarValidationContract.ValidarPedidoItemProduto();
+            AddNotifications(pedidoItemAdicionarValidationContract.Contract.Notifications);
+
+            if (Invalid)
+                return;
+            
             Quantidade = quantidade;
             ValorUnitario = produto.Preco;
+
+            pedidoItemAdicionarValidationContract.ValidarPedidoItemDemaisPropriedades();
+            AddNotifications(pedidoItemAdicionarValidationContract.Contract.Notifications);
 
             produto.DiminuirQuantidadeEstoque(quantidade);
         }

@@ -18,7 +18,7 @@ namespace LojaVirtual.Infra.Data.Mappings
                 .IsRequired();
 
             Property(p => p.Imagem)
-                .HasMaxLength(1024)
+                .HasColumnType("varchar(max)")
                 .IsRequired();
 
             Property(p => p.QuantidadeEstoque)

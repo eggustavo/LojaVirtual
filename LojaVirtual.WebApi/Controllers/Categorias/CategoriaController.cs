@@ -9,6 +9,7 @@ using LojaVirtual.WebApi.Controllers.Base;
 
 namespace LojaVirtual.WebApi.Controllers.Categorias
 {
+    [Authorize]
     [RoutePrefix("api")]
     public class CategoriaController : BaseController
     {
@@ -19,6 +20,7 @@ namespace LojaVirtual.WebApi.Controllers.Categorias
             _serviceCategoria = serviceCategoria;
         }
 
+        [AllowAnonymous]
         [HttpGet]
         [Route("v1/categoria/listar")]
         public Task<HttpResponseMessage> Listar()

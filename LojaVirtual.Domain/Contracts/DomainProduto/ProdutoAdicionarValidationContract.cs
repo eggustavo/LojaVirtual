@@ -20,7 +20,7 @@ namespace LojaVirtual.Domain.Contracts.DomainProduto
                 Contract
                     .Requires()
                     .HasMinLen(produto.Descricao, 5, "Descricao", "A Descrição deve conter pelo menos 3 caracteres")
-                    .HasMaxLen(produto.Descricao, 100, "Descricao", "A Descrição deve conter no máximo 100 caracteres")
+                    .HasMaxLen(produto.Descricao, 200, "Descricao", "A Descrição deve conter no máximo 100 caracteres")
                     .IsGreaterThan(produto.Preco, 0, "Preco", "Preco deve ser maior que 'Zero'");
             }
         }

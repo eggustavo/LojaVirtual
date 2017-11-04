@@ -18,26 +18,49 @@
     <script src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
     <script src="../bower_components/toastr/toastr.js"></script>
     <script src="../bower_components/angular/angular.js"></script>
+    <script src="../bower_components/angular-locale-pt-br/angular-locale_pt-br.js"></script>
     <script src="../bower_components/angular-route/angular-route.js"></script>
     <script src="../bower_components/angular-input-masks/angular-input-masks-dependencies.js"></script>
     <script src="../bower_components/angular-input-masks/angular-input-masks.js"></script>
     <script src="../bower_components/angular-input-masks/angular-input-masks.br.js"></script>
+    <script src="../bower_components/angular-base64-upload/dist/angular-base64-upload.js"></script>
+    <script src="../bower_components/angular-password/angular-password.js"></script>
 
     <!-- Scripts AngularJS -->
     <script src="app/app.module.js"></script>
     <script src="app/app.config.js"></script>
     <script src="app/app.constant.js"></script>
-
+    <script src="app/app.run.js"></script>
+    
     <!-- Services -->
     <script src="app/services/message.js"></script>
 
     <!-- Factories -->
+    <script src="app/factories/login.factory.js"></script>
+    <script src="app/factories/usuario.factory.js"></script>
     <script src="app/factories/categoria.factory.js"></script>
+    <script src="app/factories/produto.factory.js"></script>
 
-    <!-- Controllers -->
+    <!-- Controllers Login -->
+    <script src="app/account/login.controller.js"></script>
+
+    <!-- Controllers Logout -->
+    <script src="app/account/logout.controller.js"></script>
+
+    <!-- Controllers Usuário -->
+    <script src="app/usuario/usuario.create.controller.js"></script>    
+   
+    <!-- Controllers Categoria -->
     <script src="app/categoria/categoria.list.controller.js"></script>
     <script src="app/categoria/categoria.create.controller.js"></script>
     <script src="app/categoria/categoria.edit.controller.js"></script>
     <script src="app/categoria/categoria.view.controller.js"></script>
+
+    <!-- Controllers Produto -->
+    <script src="app/produto/produto.list.controller.js"></script>
+    <script src="app/produto/produto.list-categoria.controller.js"></script>
+    <script src="app/produto/produto.create.controller.js"></script>
+    <script src="app/produto/produto.edit.controller.js"></script>
+    <script src="app/produto/produto.view.controller.js"></script>
   </body>
 </html>

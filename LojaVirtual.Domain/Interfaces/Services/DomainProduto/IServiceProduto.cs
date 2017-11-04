@@ -9,6 +9,7 @@ namespace LojaVirtual.Domain.Interfaces.Services.DomainProduto
     public interface IServiceProduto : IServiceBase
     {
         IEnumerable<ListarResponse> Listar();
+        IEnumerable<ListarResponse> Listar(Guid categoriaId);
         ListarResponse ObterPorId(Guid id);
         AdicionarResponse Adicionar(AdicionarRequest request);
         ResponseBase Atualizar(AtualizarRequest request);

@@ -10,16 +10,20 @@
             if (objeto.data == null)
                 return '<br/> Erro não Catalogado ou Provedor de Dados não está acessível.';
 
-            if (objeto.data.success) {
-                return objeto.data.dataReturn.message;
+            if (objeto.status == 401) {
+                return '<br/>' + objeto.status + " - A Autorização foi negada para esta requisição. <br/> Favor se autenticar ou verificar suas permissões junto ao Administrador.";
             } else {
-                var msg = '<br/> <br/> ';
-                objeto.data.notifications.forEach(function(erro) {
-                    msg += erro.property + ': ' + erro.message + '<br/>';
-                });
-
-                return msg;               
-            };
+                if (objeto.data.success) {
+                    return objeto.data.dataReturn.message;
+                } else {
+                    var msg = '<br/> <br/> ';
+                    objeto.data.notifications.forEach(function(erro) {
+                        msg += erro.property + ': ' + erro.message + '<br/>';
+                    });
+    
+                    return msg;               
+                };               
+            };         
         };
     };
 })();

@@ -6,14 +6,27 @@ namespace LojaVirtual.Domain.Contracts.DomainPedido
     public class PedidoItemAdicionarValidationContract : IContract
     {
         public ValidationContract Contract { get; }
+        private readonly PedidoItem _pedidoItem;
 
         public PedidoItemAdicionarValidationContract(PedidoItem pedidoItem)
         {
             Contract = new ValidationContract();
+            _pedidoItem = pedidoItem;
+        }
+
+        public void ValidarPedidoItemProduto()
+        {
             Contract
                 .Requires()
-                .IsGreaterOrEqualsThan(pedidoItem.Quantidade, 1, "Quantidade", "Quantidade deve ser igual ou maior que 1")
-                .IsGreaterOrEqualsThan(pedidoItem.Produto.QuantidadeEstoque, pedidoItem.Quantidade, "QuantidadeEstoque",  $"Não temos tantos {pedidoItem.Produto.Descricao}(s) em estoque.");
+                .IsNotNull(_pedidoItem.Produto, "Produto", "Produto não Localizado!");
+        }
+
+        public void ValidarPedidoItemDemaisPropriedades()
+        {
+            Contract
+                .Requires()
+                .IsGreaterOrEqualsThan(_pedidoItem.Quantidade, 1, "Quantidade", "Quantidade deve ser igual ou maior que 1")
+                .IsGreaterOrEqualsThan(_pedidoItem.Produto.QuantidadeEstoque, _pedidoItem.Quantidade, "QuantidadeEstoque", $"Não temos tantos {_pedidoItem.Produto.Descricao}(s) em estoque.");
         }
     }
 }

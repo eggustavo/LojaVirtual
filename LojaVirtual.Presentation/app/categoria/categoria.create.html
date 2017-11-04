@@ -5,6 +5,7 @@
             <label for="descricao">Descrição</label>
             <input type="text" class="form-control" ng-model="vm.categoria.descricao" id="descricao" name="descricao" autofocus/>
         </div>
+        <input type="file" ng-model="myfile" base-sixty-four-input>
     </div>
     <footer>
         <div class="pull-right">
@@ -20,6 +21,15 @@
     </footer>
 </form>
 
+{{ myfile }}
+
+{{ myfile.base64 }}
+
+<img src="data:image/jpg;base64,{{myfile.base64}}">
+
+<!--
+<img ng-src="{{ 'data:image/png;base64,' + user.Photo }}"/>
+-->
 
 <div ng-repeat="error in vm.errors" class="alert-danger">
     {{ error.message }}

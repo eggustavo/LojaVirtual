@@ -9,6 +9,7 @@ using LojaVirtual.WebApi.Controllers.Base;
 
 namespace LojaVirtual.WebApi.Controllers.Produtos
 {
+    [Authorize]
     [RoutePrefix("api")]
     public class ProdutoController : BaseController
     {
@@ -19,6 +20,7 @@ namespace LojaVirtual.WebApi.Controllers.Produtos
             _serviceProduto = serviceProduto;
         }
 
+        [AllowAnonymous]
         [HttpGet]
         [Route("v1/produto/listar")]
         public Task<HttpResponseMessage> Listar()
@@ -26,6 +28,15 @@ namespace LojaVirtual.WebApi.Controllers.Produtos
             return CreateResponse(HttpStatusCode.OK, _serviceProduto.Listar(), _serviceProduto.GetNotifications());
         }
 
+        [AllowAnonymous]
+        [HttpGet]
+        [Route("v1/produto/listar/categoria/{categoriaId}")]
+        public Task<HttpResponseMessage> ListarPorCategoria(Guid categoriaId)
+        {
+            return CreateResponse(HttpStatusCode.OK, _serviceProduto.Listar(categoriaId), _serviceProduto.GetNotifications());
+        }
+
+        [AllowAnonymous]
         [HttpGet]
         [Route("v1/produto/{id}")]
         public Task<HttpResponseMessage> ObterPorId(Guid id)

@@ -33,6 +33,21 @@ namespace LojaVirtual.Infra.Data.Repositories.DomainProduto
             return _context.Database.Connection.Query<ListarResponse>(sqlSelect);
         }
 
+        public IEnumerable<ListarResponse> Listar(Guid categoriaId)
+        {
+            const string sqlSelect = @"Select A.*,
+                                              B.Descricao DescricaoCategoria
+                                       From LV_Produto A,
+                                            LV_Categoria B
+                                       Where
+                                         B.Id = A.CategoriaId
+                                       And
+                                         A.CategoriaId = @pCategoriaId
+                                       Order By A.Descricao";
+
+            return _context.Database.Connection.Query<ListarResponse>(sqlSelect, new { pCategoriaId = categoriaId });
+        }
+
         public ListarResponse ObterPorId(Guid id)
         {
             const string sqlSelect = @"Select A.*,

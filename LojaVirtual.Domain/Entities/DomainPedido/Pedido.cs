@@ -23,10 +23,9 @@ namespace LojaVirtual.Domain.Entities.DomainPedido
 
         public void AdicionarItem(PedidoItem item)
         {
-            var pedidoItemAdicionarValidationContract = new PedidoItemAdicionarValidationContract(item);
-            AddNotifications(pedidoItemAdicionarValidationContract.Contract.Notifications);
+            AddNotifications(item.Notifications);
 
-            if (item.Valid)
+            if (Valid)
                 _itens.Add(item);
         }
 

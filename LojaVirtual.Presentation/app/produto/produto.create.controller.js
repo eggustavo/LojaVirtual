@@ -1,0 +1,75 @@
+(function() {
+    'use strict';
+
+    angular.module('LV').controller('produtoCreateCtrl', produtoCreateController);
+
+    produtoCreateController.$inject = ['$location', 'produtoFactory', 'categoriaFactory', 'message'];
+
+    function produtoCreateController($location, produtoFactory, categoriaFactory, message) {
+        var vm = this;
+
+        vm.produto = {
+            descricao: '',
+            preco: 0,
+            imagem: '',
+            quantidadeEstoque: 0,
+            categoriaId: null
+        };
+
+        vm.colecaoCategoria = [];
+
+        vm.salvar = salvar;
+        vm.setarImagem = setarImagem;
+
+        initialization();
+        
+        function initialization() {
+            listarCategorias();
+        };  
+        
+        function listarCategorias() {
+            categoriaFactory.listar()
+                .then(successCallback)
+                .catch(errorCallback);
+
+            function successCallback(response) {
+                vm.colecaoCategoria = response.data.dataReturn;
+            };
+
+            function errorCallback(response) {
+                toastr.error('Ocorreu um erro ao processar a requisição: ' + message.getMessage(response), 'Loja Virtual');
+            };
+        };        
+
+        function salvar() {
+            produtoFactory.salvar(vm.produto)
+                .then(successCallback)
+                .catch(errorCallback);
+
+            function successCallback(response) {
+                $location.path('/produto/list');
+                toastr.success(message.getMessage(response), 'Loja Virtual');
+            };
+
+            function errorCallback(response) {
+                vm.errors = response.data.notifications;
+                toastr.error('Ocorreu um erro ao processar a requisição: ' + message.getMessage(response), 'Loja Virtual');
+            };
+        };
+
+        function setarImagem (e, reader, file, fileList, fileOjects, fileObj) {
+            if (fileObj.filetype != 'image/jpeg') {
+                toastr.error('A imagem deve ser do tipo JPEG', 'Loja Virtual');                
+            } else {
+                vm.produto.imagem = fileObj.base64;
+                //console.log('imagem: ', vm.produto.imagem);
+                //console.log('e: ', e);
+                //console.log('reader: ', reader);
+                //console.log('file: ', file);
+                //console.log('fileList: ', fileList);
+                ////console.log('fileObjects: ', fileObjects);
+                //console.log('fileObj: ', fileObj);
+            };
+        };        
+    };
+})();

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using FluentValidator;
 using LojaVirtual.Domain.DTOs.DomainPedido;
 using LojaVirtual.Domain.Entities.DomainPedido;
@@ -59,15 +60,23 @@ namespace LojaVirtual.Domain.Services.DomainPedido
                 pedido.AdicionarItem(new PedidoItem(produto, item.Quantidade));
             }
 
+            AddNotifications(pedido.Notifications);
+
             if (Invalid)
                 return null;
+
+            pedido.Itens.ToList().ForEach(pedidoItem =>
+            {
+                _repositoryProduto.Atualizar(pedidoItem.Produto);
+            });
 
             _repositoryPedido.Adicionar(pedido);
             Commit();
 
             return new AdicionarResponse
             {
-                Numero = pedido.Numero
+                Numero = pedido.Numero,
+                Message = "Pedido Inserido com Sucesso!"
             };
         }
 

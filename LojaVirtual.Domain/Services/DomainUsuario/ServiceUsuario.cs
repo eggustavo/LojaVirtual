@@ -59,7 +59,8 @@ namespace LojaVirtual.Domain.Services.DomainUsuario
 
             return new AdicionarResponse
             {
-                Id = usuario.Id
+                Id = usuario.Id,
+                Message = "Usuário Inserido com Sucesso!"
             };
         }
 
@@ -90,7 +91,7 @@ namespace LojaVirtual.Domain.Services.DomainUsuario
 
             return new ResponseBase
             {
-                Message = "Usuário Alterado com Sucesso"
+                Message = "Usuário Alterado com Sucesso!"
             };
         }
 
