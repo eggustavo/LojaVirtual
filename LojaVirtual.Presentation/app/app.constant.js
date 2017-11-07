@@ -6,6 +6,6 @@
         'constServiceCep': 'https://viacep.com.br/ws/',         
         'constCarrinho': 'lv-carrinho',
         'constUsuario': 'lv-usuario',
-        'constToken': 'lv-token' 
+        'constToken': 'lv-token'
     });
 })();

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web.Http;
 using FluentValidator;
@@ -11,7 +12,14 @@ namespace LojaVirtual.WebApi.Controllers.Base
 {
     public abstract class BaseController : ApiController
     {
-        public Task<HttpResponseMessage> CreateResponse(HttpStatusCode code, object dataReturn, IReadOnlyCollection<Notification> notifications)
+        protected InformacaoToken InfoToken { get; }
+
+        protected BaseController()
+        {
+            InfoToken = ObterInformacaoToken();
+        }
+
+        protected Task<HttpResponseMessage> CreateResponse(HttpStatusCode code, object dataReturn, IReadOnlyCollection<Notification> notifications)
         {
             if (notifications.Any())
             {
@@ -48,6 +56,17 @@ namespace LojaVirtual.WebApi.Controllers.Base
                 return Task.FromResult(responseMessage);
             }
         }
+
+        private InformacaoToken ObterInformacaoToken()
+        {
+            if (!User.Identity.IsAuthenticated)
+                return null;
+
+            return new InformacaoToken(Guid.Parse(((ClaimsPrincipal)User).Claims.FirstOrDefault(p => p.Type == "UsuarioId")?.Value),
+                ((ClaimsPrincipal)User).Claims.FirstOrDefault(p => p.Type == "UsuarioNome")?.Value,
+                ((ClaimsPrincipal)User).Claims.FirstOrDefault(p => p.Type == "UsuarioLogin")?.Value,
+                ((ClaimsPrincipal)User).Claims.FirstOrDefault(p => p.Type == "UsuarioEmail")?.Value);
+        }
     }
 
     internal class RetornoApi
@@ -55,5 +74,21 @@ namespace LojaVirtual.WebApi.Controllers.Base
         public bool Success { get; set; }
         public object DataReturn { get; set; }
         public Notification[] Notifications { get; set; }
+    }
+
+    public class InformacaoToken
+    {
+        public Guid UsuarioId { get; }
+        public string UsuarioNome { get; }
+        public string UsuarioLogin { get; }
+        public string UsuarioEmail { get; }
+
+        public InformacaoToken(Guid usuarioId, string usuarioNome, string usuarioLogin, string usuarioEmail)
+        {
+            UsuarioId = usuarioId;
+            UsuarioNome = usuarioNome;
+            UsuarioLogin = usuarioLogin;
+            UsuarioEmail = usuarioEmail;
+        }
     }
 }

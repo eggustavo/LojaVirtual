@@ -3,9 +3,9 @@
 
     angular.module('LV').factory('usuarioFactory', usuarioFactory);
 
-    usuarioFactory.$inject = ['$http','settings'];
+    usuarioFactory.$inject = ['$rootScope', '$http','settings'];
 
-    function usuarioFactory($http, settings) {
+    function usuarioFactory($rootScope, $http, settings) {
         return {
             criar: criar
         };

@@ -25,8 +25,7 @@ namespace LojaVirtual.Infra.Data.Repositories.DomainUsuario
             const string sqlSelect = @"Select A.Id,
                                               A.Nome,
                                               A.UsuarioLogin,
-                                              A.Email,
-                                              A.FlagAtivo
+                                              A.Email
                                        From LV_Usuario A";
 
             return _context.Database.Connection.Query<ListarResponse>(sqlSelect);
@@ -37,8 +36,7 @@ namespace LojaVirtual.Infra.Data.Repositories.DomainUsuario
             const string sqlSelect = @"Select A.Id,
                                               A.Nome,
                                               A.UsuarioLogin,
-                                              A.Email,
-                                              A.FlagAtivo
+                                              A.Email
                                        From LV_Usuario A
                                        Where
                                          A.Id = @pId";

@@ -27,7 +27,7 @@ namespace LojaVirtual.WebApi
 
             ConfigurarIoC(config, container);
             ConfigurarWebApi(config);
-            ConfigureOAuth(app, container.Resolve<IServiceUsuario>());
+            ConfigurarOAuth(app, container.Resolve<IServiceUsuario>());
 
             app.UseCors(CorsOptions.AllowAll);
             app.UseWebApi(config);
@@ -54,7 +54,7 @@ namespace LojaVirtual.WebApi
             config.MapHttpAttributeRoutes();
         }
 
-        private void ConfigureOAuth(IAppBuilder app, IServiceUsuario serviceUsuario)
+        private void ConfigurarOAuth(IAppBuilder app, IServiceUsuario serviceUsuario)
         {
             var oAuthServerOptions = new OAuthAuthorizationServerOptions()
             {

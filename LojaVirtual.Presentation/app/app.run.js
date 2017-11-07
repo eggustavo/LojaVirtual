@@ -9,14 +9,14 @@
         //Recuperando dados do login da sessão do navegador, cada aba aberta é uma sessão diferente
         var usuario = sessionStorage.getItem(settings.constUsuario);
         var token = sessionStorage.getItem(settings.constToken);
-        var carrinho = sessionStorage.getItem(settings.constCarrinho);
+        var carrinho = localStorage.getItem(settings.constCarrinho);
 
         $rootScope.usuario = null;
         $rootScope.token = null;
         $rootScope.header = null; 
         $rootScope.carrinho = [];      
 
-        if (usuario && usuario) {
+        if (usuario && token) {
             $rootScope.usuario = usuario;
             $rootScope.token = token;
             $rootScope.header = {

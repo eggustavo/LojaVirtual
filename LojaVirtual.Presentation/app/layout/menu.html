@@ -33,12 +33,12 @@
                     </li>                  
                 </li>
             </ul>
-            <ul class="nav navbar-nav navbar-right" ng-if="!usuario">
-                <li><a href="#!/login">Acessar</a></li>
-            </ul>            
-            <ul class="nav navbar-nav navbar-right" ng-if="usuario">
-                <li><a href="#!/">Olá, <em>{{ usuario }}</em></a></li>
-                <li><a href="#!/logout">Sair</a></li>
+          
+            <ul class="nav navbar-nav navbar-right">
+                <li ng-if="!usuario"><a href="#!/login">Acessar</a></li>
+                <li ng-if="usuario"><a href="javascript:void(0)">Olá, <em>{{ usuario }}</em></a></li>
+                <li><a href="#!/carrinho"><i class="glyphicon glyphicon-shopping-cart"></i>&nbsp;&nbsp;<span class="badge danger">{{ carrinho.length }}</span></a></li>
+                <li ng-if="usuario"><a href="#!/logout">Sair</a></li>
             </ul>
         </div>
     </div>

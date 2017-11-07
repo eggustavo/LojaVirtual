@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using LojaVirtual.Domain.Base;
-using LojaVirtual.Domain.Contracts.DomainPedido;
 using LojaVirtual.Domain.Entities.DomainUsuario;
 
 namespace LojaVirtual.Domain.Entities.DomainPedido

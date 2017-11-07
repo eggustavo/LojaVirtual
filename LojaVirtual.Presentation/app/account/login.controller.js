@@ -3,9 +3,9 @@
 
     angular.module('LV').controller('loginCtrl', loginController);
 
-    loginController.$inject = ['$rootScope', '$location', 'loginFactory', 'settings'];
+    loginController.$inject = ['$rootScope', '$location', 'loginFactory', 'usuarioFactory', 'settings'];
 
-    function loginController($rootScope, $location, loginFactory, settings) {
+    function loginController($rootScope, $location, loginFactory, usuarioFactory, settings) {
         var vm = this;
 
         vm.usuario = {
@@ -31,7 +31,7 @@
 
                 //Gravando dados do login na sessão do navegador, cada aba aberta é uma sessão diferente
                 sessionStorage.setItem(settings.constUsuario, $rootScope.usuario);
-                sessionStorage.setItem(settings.constToken, $rootScope.token);
+                sessionStorage.setItem(settings.constToken, $rootScope.token);                
 
                 $location.path('/');
             };

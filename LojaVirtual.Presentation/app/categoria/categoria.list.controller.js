@@ -3,9 +3,9 @@
 
     angular.module('LV').controller('categoriaListCtrl', categoriaListController);
 
-    categoriaListController.$inject = ['categoriaFactory', 'message'];
+    categoriaListController.$inject = ['categoriaFactory', 'message', '$rootScope'];
 
-    function categoriaListController(categoriaFactory, message) {
+    function categoriaListController(categoriaFactory, message, $rootScope) {
         var vm = this;
 
         vm.colecaoCategoria = [];

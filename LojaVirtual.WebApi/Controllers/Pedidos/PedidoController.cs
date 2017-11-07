@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
@@ -19,24 +20,31 @@ namespace LojaVirtual.WebApi.Controllers.Pedidos
             _servicePedido = servicePedido;
         }
 
-        [HttpPost]
+        [HttpGet]
         [Route("v1/pedido/listar")]
-        public Task<HttpResponseMessage> Listar(ListarRequest request)
+        public Task<HttpResponseMessage> Listar()
         {
-            return CreateResponse(HttpStatusCode.OK, _servicePedido.Listar(request), _servicePedido.GetNotifications());
+            return CreateResponse(HttpStatusCode.OK, _servicePedido.Listar(InfoToken.UsuarioId), _servicePedido.GetNotifications());
         }
 
-        [HttpPost]
+        [HttpGet]
         [Route("v1/pedido/obter")]
-        public Task<HttpResponseMessage> Obter(ObterRequest request)
+        public Task<HttpResponseMessage> Obter(Guid pedidoId)
         {
-            return CreateResponse(HttpStatusCode.OK, _servicePedido.Obter(request), _servicePedido.GetNotifications());
+            var obterRequest = new ObterRequest
+            {
+                UsuarioId = InfoToken.UsuarioId,
+                PedidoId = pedidoId
+            };
+
+            return CreateResponse(HttpStatusCode.OK, _servicePedido.Obter(obterRequest), _servicePedido.GetNotifications());
         }
 
         [HttpPost]
         [Route("v1/pedido")]
         public Task<HttpResponseMessage> Adicionar(AdicionarRequest request)
         {
+            request.UsuarioId = InfoToken.UsuarioId;
             return CreateResponse(HttpStatusCode.Created, _servicePedido.Adicionar(request), _servicePedido.GetNotifications());
         }
     }

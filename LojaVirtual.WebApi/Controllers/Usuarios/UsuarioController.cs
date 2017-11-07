@@ -40,12 +40,12 @@ namespace LojaVirtual.WebApi.Controllers.Usuarios
             return CreateResponse(HttpStatusCode.Created, _serviceUsuario.Adicionar(request), _serviceUsuario.GetNotifications());
         }
 
-        [HttpPost]
-        [Route("v1/usuario/autenticar")]
-        public Task<HttpResponseMessage> Autenticar(AutenticarRequest request)
-        {
-            return CreateResponse(HttpStatusCode.Created, _serviceUsuario.Autenticar(request), _serviceUsuario.GetNotifications());
-        }
+        //[HttpPost]
+        //[Route("v1/usuario/autenticar")]
+        //public Task<HttpResponseMessage> Autenticar(AutenticarRequest request)
+        //{
+        //    return CreateResponse(HttpStatusCode.Created, _serviceUsuario.Autenticar(request), _serviceUsuario.GetNotifications());
+        //}
 
         [Authorize]
         [HttpPut]
@@ -71,12 +71,11 @@ namespace LojaVirtual.WebApi.Controllers.Usuarios
             return CreateResponse(HttpStatusCode.OK, _serviceUsuario.AlterarEmail(request), _serviceUsuario.GetNotifications());
         }
 
-        [HttpDelete]
-        [Route("v1/usuario/{id}")]
-        public Task<HttpResponseMessage> Remover(Guid id)
-        {
-            return CreateResponse(HttpStatusCode.OK, _serviceUsuario.Remover(id), _serviceUsuario.GetNotifications());
-        }
-
+        //[HttpDelete]
+        //[Route("v1/usuario/{id}")]
+        //public Task<HttpResponseMessage> Remover(Guid id)
+        //{
+        //    return CreateResponse(HttpStatusCode.OK, _serviceUsuario.Remover(id), _serviceUsuario.GetNotifications());
+        //}
     }
 }

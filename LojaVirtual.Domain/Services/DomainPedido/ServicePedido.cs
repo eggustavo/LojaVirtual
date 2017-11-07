@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using FluentValidator;
 using LojaVirtual.Domain.DTOs.DomainPedido;
@@ -29,9 +30,9 @@ namespace LojaVirtual.Domain.Services.DomainPedido
             _repositoryProduto = repositoryProduto;
         }
 
-        public IEnumerable<ListarResponse> Listar(ListarRequest request)
+        public IEnumerable<ListarResponse> Listar(Guid usuarioId)
         {
-            return _repositoryPedido.Listar(request.UsuarioId);
+            return _repositoryPedido.Listar(usuarioId);
         }
 
         public ListarResponse Obter(ObterRequest request)

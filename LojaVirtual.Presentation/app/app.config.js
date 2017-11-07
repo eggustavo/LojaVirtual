@@ -81,7 +81,13 @@
             controller: 'produtoEditCtrl',
             controllerAs: 'vm',
             restrito: false
-        })        
+        })
+        .when('/carrinho', {
+            templateUrl: 'app/carrinho/carrinho.html',
+            controller: 'carrinhoCtrl',
+            controllerAs: 'vm',
+            restrito: false
+        })                  
         .otherwise({
             redirectTo: '/'
         });

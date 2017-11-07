@@ -31,7 +31,8 @@ namespace LojaVirtual.Domain.Entities.DomainProduto
         public int QuantidadeEstoque { get; private set; }
         public Categoria Categoria { get; private set; }
 
-        public void DiminuirQuantidadeEstoque(int quantidade) => QuantidadeEstoque -= quantidade;
+        public void DiminuirQuantidadeEstoque(int quantidade) => 
+            QuantidadeEstoque -= quantidade;
 
         //Forma Tradicional
         //public void DiminuirQuantidadeEstoque(int quantidade)

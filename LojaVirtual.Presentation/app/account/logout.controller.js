@@ -13,7 +13,7 @@
         function initialization() {
             $rootScope.usuario = null;
             $rootScope.token = null;
-            $rootScope.header = null; 
+            $rootScope.header = null;
 
             sessionStorage.removeItem(settings.constUsuario);
             sessionStorage.removeItem(settings.constToken);

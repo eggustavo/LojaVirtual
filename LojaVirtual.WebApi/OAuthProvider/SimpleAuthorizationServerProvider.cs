@@ -52,9 +52,9 @@ namespace LojaVirtual.WebApi.OAuthProvider
             
             //Definindo as Claims
             identity.AddClaim(new Claim("UsuarioId", usuario.Id.ToString()));
-            identity.AddClaim(new Claim(ClaimTypes.Name, usuario.Nome));
-            identity.AddClaim(new Claim("UserName", usuario.UsuarioLogin));
-            identity.AddClaim(new Claim(ClaimTypes.Email, usuario.Email));
+            identity.AddClaim(new Claim("UsuarioNome", usuario.Nome));
+            identity.AddClaim(new Claim("UsuarioLogin", usuario.UsuarioLogin));
+            identity.AddClaim(new Claim("UsuarioEmail", usuario.Email));
 
             var principal = new GenericPrincipal(identity, new string[] { });
             Thread.CurrentPrincipal = principal;

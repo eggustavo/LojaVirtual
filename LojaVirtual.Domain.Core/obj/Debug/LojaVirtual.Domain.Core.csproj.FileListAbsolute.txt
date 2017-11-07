@@ -9,3 +9,4 @@ C:\LojaVirtualApoio\LojaVirtual\LojaVirtual.Domain.Core\obj\Debug\LojaVirtual.Do
 C:\LojaVirtualApoio\LojaVirtual\LojaVirtual.Domain.Core\obj\Debug\LojaVirtual.Domain.Core.csproj.CoreCompileInputs.cache
 C:\LojaVirtualApoio\LojaVirtual\LojaVirtual.Domain.Core\obj\Debug\LojaVirtual.Domain.Core.dll
 C:\LojaVirtualApoio\LojaVirtual\LojaVirtual.Domain.Core\obj\Debug\LojaVirtual.Domain.Core.pdb
+C:\Eduardo\Projetos\LojaVirtualApoio\LojaVirtual\LojaVirtual.Domain.Core\obj\Debug\LojaVirtual.Domain.Core.csprojResolveAssemblyReference.cache
