@@ -27,19 +27,6 @@ namespace LojaVirtual.WebApi.Controllers.Pedidos
             return CreateResponse(HttpStatusCode.OK, _servicePedido.Listar(InfoToken.UsuarioId), _servicePedido.GetNotifications());
         }
 
-        [HttpGet]
-        [Route("v1/pedido/obter")]
-        public Task<HttpResponseMessage> Obter(Guid pedidoId)
-        {
-            var obterRequest = new ObterRequest
-            {
-                UsuarioId = InfoToken.UsuarioId,
-                PedidoId = pedidoId
-            };
-
-            return CreateResponse(HttpStatusCode.OK, _servicePedido.Obter(obterRequest), _servicePedido.GetNotifications());
-        }
-
         [HttpPost]
         [Route("v1/pedido")]
         public Task<HttpResponseMessage> Adicionar(AdicionarRequest request)

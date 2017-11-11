@@ -9,6 +9,5 @@ namespace LojaVirtual.Domain.Interfaces.Repositories.DomainPedido
     public interface IRepositoryPedido : IRepositoryBase<Pedido>
     {
         IEnumerable<ListarResponse> Listar(Guid usuarioId);
-        ListarResponse Obter(Guid usuarioId, Guid pedidoId);
     }
 }

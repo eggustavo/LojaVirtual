@@ -75,6 +75,6 @@
             } else {
                 vm.produto.imagem = fileObj.base64;
             };
-        };          
+        };           
     };
 })();

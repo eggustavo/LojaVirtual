@@ -5,6 +5,11 @@ namespace LojaVirtual.Domain.DTOs.DomainPedido
 {
     public class ListarResponse
     {
+        public ListarResponse()
+        {
+            Itens = new List<ListarItemResponse>();
+        }
+
         public Guid Id { get; set; }
         public string Numero { get; set; }
         public DateTime Data { get; set; }
@@ -12,7 +17,8 @@ namespace LojaVirtual.Domain.DTOs.DomainPedido
         public string NomeUsuario { get; set; }
         public decimal TaxaEntrega { get; set; }
         public decimal Desconto { get; set; }
-        public IEnumerable<ListarItemResponse> Itens { get; set; }
-
+        public decimal SubTotal { get; set; }
+        public decimal ValorTotal { get; set; }
+        public IList<ListarItemResponse> Itens { get; set; }
     }
 }

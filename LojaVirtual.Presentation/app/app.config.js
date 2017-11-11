@@ -21,7 +21,13 @@
             controller: 'logoutCtrl',
             controllerAs: 'vm',
             restrito: false
-        })          
+        })
+        .when('/trocar-senha', {
+            templateUrl: 'app/account/trocar-senha.html',
+            controller: 'trocarSenhaCtrl',
+            controllerAs: 'vm',
+            restrito: true
+        })                     
         .when('/usuario/create', {
             templateUrl: 'app/usuario/usuario.create.html',
             controller: 'usuarioCreateCtrl',
@@ -87,7 +93,19 @@
             controller: 'carrinhoCtrl',
             controllerAs: 'vm',
             restrito: false
-        })                  
+        })
+        .when('/pedido-finalizado/:numeroPedido', {
+            templateUrl: 'app/pedido/pedido-finalizado.html',
+            controller: 'pedidoFinalizadoCtrl',
+            controllerAs: 'vm',
+            restrito: true
+        }) 
+        .when('/pedido/listar', {
+            templateUrl: 'app/pedido/pedido-list.html',
+            controller: 'pedidoListCtrl',
+            controllerAs: 'vm',
+            restrito: true
+        }) 
         .otherwise({
             redirectTo: '/'
         });

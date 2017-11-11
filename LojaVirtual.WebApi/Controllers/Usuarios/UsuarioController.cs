@@ -40,13 +40,6 @@ namespace LojaVirtual.WebApi.Controllers.Usuarios
             return CreateResponse(HttpStatusCode.Created, _serviceUsuario.Adicionar(request), _serviceUsuario.GetNotifications());
         }
 
-        //[HttpPost]
-        //[Route("v1/usuario/autenticar")]
-        //public Task<HttpResponseMessage> Autenticar(AutenticarRequest request)
-        //{
-        //    return CreateResponse(HttpStatusCode.Created, _serviceUsuario.Autenticar(request), _serviceUsuario.GetNotifications());
-        //}
-
         [Authorize]
         [HttpPut]
         [Route("v1/usuario")]
@@ -60,22 +53,7 @@ namespace LojaVirtual.WebApi.Controllers.Usuarios
         [Route("v1/usuario/alterar-senha")]
         public Task<HttpResponseMessage> AlterarSenha(AlterarSenhaRequest request)
         {
-            return CreateResponse(HttpStatusCode.OK, _serviceUsuario.AlterarSenha(request), _serviceUsuario.GetNotifications());
+            return CreateResponse(HttpStatusCode.OK, _serviceUsuario.AlterarSenha(InfoToken.UsuarioId, request), _serviceUsuario.GetNotifications());
         }
-
-        [Authorize]
-        [HttpPut]
-        [Route("v1/usuario/alterar-email")]
-        public Task<HttpResponseMessage> AlterarEmail(AlterarEmailRequest request)
-        {
-            return CreateResponse(HttpStatusCode.OK, _serviceUsuario.AlterarEmail(request), _serviceUsuario.GetNotifications());
-        }
-
-        //[HttpDelete]
-        //[Route("v1/usuario/{id}")]
-        //public Task<HttpResponseMessage> Remover(Guid id)
-        //{
-        //    return CreateResponse(HttpStatusCode.OK, _serviceUsuario.Remover(id), _serviceUsuario.GetNotifications());
-        //}
     }
 }

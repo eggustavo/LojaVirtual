@@ -1,6 +1,7 @@
 ﻿using FluentValidator.Validation;
 using LojaVirtual.Domain.Base;
 using LojaVirtual.Domain.Entities.DomainUsuario;
+using LojaVirtual.Domain.Interfaces.Repositories.DomainUsuario;
 
 namespace LojaVirtual.Domain.Contracts.DomainUsuario
 {
@@ -8,7 +9,7 @@ namespace LojaVirtual.Domain.Contracts.DomainUsuario
     {
         public ValidationContract Contract { get; }
 
-        public UsuarioAdicionarValidationContract(Usuario usuario, string confirmacaoSenha)
+        public UsuarioAdicionarValidationContract(Usuario usuario, string confirmacaoSenha, IRepositoryUsuario repositoryUsuario)
         {
             Contract = new ValidationContract();
             Contract
@@ -35,6 +36,9 @@ namespace LojaVirtual.Domain.Contracts.DomainUsuario
                     .HasMinLen(usuario.Email, 10, "Email", "O Email deve conter pelo menos 10 caracteres")
                     .HasMaxLen(usuario.Email, 200, "Email", "O Email deve conter no máximo 200 caracteres")
                     .IsEmail(usuario.Email, "Email", "Email inválido");
+
+                if (repositoryUsuario.EmailJaRegistrado(usuario.Id, usuario.Email))
+                    Contract.AddNotification("Email", "E-mail já registrado");
             }
         }
     }

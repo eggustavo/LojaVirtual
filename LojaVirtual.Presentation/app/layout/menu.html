@@ -14,7 +14,7 @@
         </div>
         <div class="navbar-collapse collapse" id="header-menu">
             <ul class="nav navbar-nav">
-                <li class="dropdown" ng-if="usuario">
+                <li class="dropdown" ng-if="(usuario | uppercase) == 'ADMINISTRADOR'">
                     <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Administração<span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="#!/categoria/list">Categorias</a></li>                        
@@ -36,9 +36,23 @@
           
             <ul class="nav navbar-nav navbar-right">
                 <li ng-if="!usuario"><a href="#!/login">Acessar</a></li>
-                <li ng-if="usuario"><a href="javascript:void(0)">Olá, <em>{{ usuario }}</em></a></li>
+                <li class="dropdown" ng-if="usuario">
+                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Olá, <em>{{ usuario }}</em><span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="#!/pedido/listar">Meus Pedidos</a>
+                        </li>
+                        <li role="separator" class="divider"></li>
+                        <li>
+                            <a href="#!/trocar-senha">Trocar Senha</a>
+                        </li>                        
+                        <li role="separator" class="divider"></li>
+                        <li>
+                            <a href="#!/logout">Sair</a>
+                        </li>
+                    </ul>
+                </li>
                 <li><a href="#!/carrinho"><i class="glyphicon glyphicon-shopping-cart"></i>&nbsp;&nbsp;<span class="badge danger">{{ carrinho.length }}</span></a></li>
-                <li ng-if="usuario"><a href="#!/logout">Sair</a></li>
             </ul>
         </div>
     </div>

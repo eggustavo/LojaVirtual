@@ -15,7 +15,6 @@ namespace LojaVirtual.Domain.Interfaces.Services.DomainUsuario
         ResponseBase Remover(Guid id);
 
         ListarResponse Autenticar(AutenticarRequest request);
-        ResponseBase AlterarSenha(AlterarSenhaRequest request);
-        ResponseBase AlterarEmail(AlterarEmailRequest request);
+        ResponseBase AlterarSenha(Guid usuarioId, AlterarSenhaRequest request);
     }
 }

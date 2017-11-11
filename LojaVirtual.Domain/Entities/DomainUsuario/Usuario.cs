@@ -60,16 +60,5 @@ namespace LojaVirtual.Domain.Entities.DomainUsuario
 
             Senha = Encrypt.EncryptPassword(novaSenha);
         }
-
-        public void AlterarEmail(string email)
-        {
-            var usuarioAlterarEmailValidationContract = new UsuarioAlterarEmailValidationContract(email);
-            AddNotifications(usuarioAlterarEmailValidationContract.Contract.Notifications);
-
-            if (Invalid)
-                return;
-
-            Email = email;
-        }
     }
 }

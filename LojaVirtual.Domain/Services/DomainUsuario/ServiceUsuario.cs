@@ -48,7 +48,7 @@ namespace LojaVirtual.Domain.Services.DomainUsuario
             }
 
             var usuario = new Usuario(request.Nome, request.UsuarioLogin, request.Senha, request.Email, request.Cep, request.Logradouro, request.Numero, request.Complmento, request.Bairro, request.Municipio, request.Uf);
-            var usuarioAdicionarValidationContract = new UsuarioAdicionarValidationContract(usuario, request.ConfirmarSenha);
+            var usuarioAdicionarValidationContract = new UsuarioAdicionarValidationContract(usuario, request.ConfirmarSenha, _repositoryUsuario);
             AddNotifications(usuarioAdicionarValidationContract.Contract.Notifications);
 
             if (Invalid)
@@ -145,7 +145,7 @@ namespace LojaVirtual.Domain.Services.DomainUsuario
             return _repositoryUsuario.ObterPorId(usuario.Id);
         }
 
-        public ResponseBase AlterarSenha(AlterarSenhaRequest request)
+        public ResponseBase AlterarSenha(Guid usuarioId, AlterarSenhaRequest request)
         {
             if (request == null)
             {
@@ -153,7 +153,7 @@ namespace LojaVirtual.Domain.Services.DomainUsuario
                 return null;
             }
 
-            var usuario = _repositoryUsuario.ObterEntidade(request.UsuarioLogin);
+            var usuario = _repositoryUsuario.ObterEntidade(usuarioId);
 
             if (usuario == null)
             {
@@ -161,7 +161,7 @@ namespace LojaVirtual.Domain.Services.DomainUsuario
                 return null;
             }
 
-            usuario.AlterarSenha(request.Senha, request.NovaSenha, request.ConfirmacaoNovaSenha);
+            usuario.AlterarSenha(request.Senha, request.NovaSenha, request.ConfirmarNovaSenha);
             AddNotifications(usuario);
 
             if (Invalid)
@@ -173,42 +173,6 @@ namespace LojaVirtual.Domain.Services.DomainUsuario
             return new ResponseBase
             {
                 Message = "Senha Alterada com Sucesso"
-            };
-        }
-
-        public ResponseBase AlterarEmail(AlterarEmailRequest request)
-        {
-            if (request == null)
-            {
-                AddNotification("AlterarEmail", "Objeto 'AlterarEmailRequest' é obrigatório");
-                return null;
-            }
-
-            var usuario = _repositoryUsuario.ObterEntidade(request.UsuarioLogin);
-            if (usuario == null)
-            {
-                AddNotification("Usuário", "Usuário não Localizado!");
-                return null;
-            }
-
-            if (_repositoryUsuario.EmailJaRegistrado(usuario.Id, request.Email))
-            {
-                AddNotification("Usuário", "Email já registrado!");
-                return null;
-            }
-
-            usuario.AlterarEmail(request.Email);
-            AddNotifications(usuario);
-
-            if (Invalid)
-                return null;
-
-            _repositoryUsuario.Atualizar(usuario);
-            Commit();
-
-            return new ResponseBase
-            {
-                Message = "Email do Usuário Alterado com Sucesso"
             };
         }
 

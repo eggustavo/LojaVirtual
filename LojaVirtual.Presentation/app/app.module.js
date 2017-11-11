@@ -5,5 +5,8 @@
         ['ngRoute',
          'ui.utils.masks',
          'naif.base64',
-         'ngPassword']);
+         'ngPassword',
+         'ngAnimate',
+         'ngTouch',
+         'ui.bootstrap']);
 })();

@@ -17,8 +17,20 @@ namespace LojaVirtual.Domain.Entities.DomainPedido
         public decimal TaxaEntrega { get; private set; }
         public decimal Desconto { get; private set; }
 
-        public decimal SubTotal() => Itens.Sum(p => p.ValorTotal());
-        public decimal ValorTotal() => SubTotal() + TaxaEntrega - Desconto;
+        //public decimal SubTotal() => Itens.Sum(p => p.ValorTotal);
+        //public decimal ValorTotal() => SubTotal() + TaxaEntrega - Desconto;
+
+        public decimal SubTotal
+        {
+            get => Itens.Sum(p => p.ValorTotal);
+            private set { }
+        }
+
+        public decimal ValorTotal
+        {
+            get => SubTotal + TaxaEntrega - Desconto;
+            private set { }
+        }
 
         public void AdicionarItem(PedidoItem item)
         {

@@ -83,26 +83,15 @@
                 .catch(errorCallback)
 
             function successCallback(response) {
-                $rootScope.carrinho = null;
+                $rootScope.carrinho = [];
                 localStorage.removeItem(settings.constCarrinho);
-                toastr.success('Pedido realizado com Sucesso.', 'Loja Virtual');
-                $location.path('/');
+                toastr.success(response.data.dataReturn.message, 'Loja Virtual');
+                $location.path('/pedido-finalizado/' + response.data.dataReturn.numero);
             };
 
             function errorCallback(response) {
                 toastr.error('Ocorreu um erro ao salvar o pedido: ' + message.getMessage(response), 'Loja Virtual');
-            };
-
-            /*
-            public decimal TaxaEntrega { get; set; }
-            public decimal Desconto { get; set; }
-            public IEnumerable<AdicionarItemRequest> Itens { get; set; }
-            
-            
-            public Guid ProdutoId { get; set; }
-            public int Quantidade { get; set; }
-            */
-         
+            };         
         };
     };
 })();

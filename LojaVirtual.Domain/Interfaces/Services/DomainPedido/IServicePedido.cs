@@ -8,7 +8,6 @@ namespace LojaVirtual.Domain.Interfaces.Services.DomainPedido
     public interface IServicePedido : IServiceBase
     {
         IEnumerable<ListarResponse> Listar(Guid usuarioId);
-        ListarResponse Obter(ObterRequest request);
         AdicionarResponse Adicionar(AdicionarRequest request);
     }
 }

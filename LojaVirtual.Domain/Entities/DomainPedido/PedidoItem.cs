@@ -9,8 +9,11 @@ namespace LojaVirtual.Domain.Entities.DomainPedido
         public Produto Produto { get; private set; }
         public int Quantidade { get; private set; }
         public decimal ValorUnitario { get; private set; }
-
-        public decimal ValorTotal() => ValorUnitario * Quantidade;
+        public decimal ValorTotal
+        {
+            get => ValorUnitario * Quantidade;
+            private set{}
+        }
 
         protected PedidoItem() { }
 

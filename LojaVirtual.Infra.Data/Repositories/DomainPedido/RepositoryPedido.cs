@@ -25,37 +25,47 @@ namespace LojaVirtual.Infra.Data.Repositories.DomainPedido
                                         A.Numero,
                                         A.Data,
                                         A.UsuarioId,
-                                        C.Nome NomeUsuario,
+                                        B.Nome NomeUsuario,
                                         A.TaxaEntrega,
-                                        A.Desconto
+                                        A.Desconto,
+                                        A.SubTotal,
+                                        A.ValorTotal,
+                                        C.Id PedidoItemId,
+                                        C.ProdutoId,
+                                        D.Descricao DescricaoProduto,
+                                        C.Quantidade,
+                                        C.ValorUnitario,
+                                        C.ValorTotal
                                  From LV_Pedido A,
-                                      LV_PedidoItem B,
-                                      LV_Usuario C
+                                      LV_Usuario B,
+                                      LV_PedidoItem C,
+                                      LV_Produto D
                                  Where
-                                   C.Id = A.UsuarioId
+                                   D.Id = C.ProdutoId
                                  And
-                                   B.PedidoId = A.Id
+                                   C.PedidoId = A.Id
+                                 And
+                                   B.Id = A.UsuarioId
                                  And
                                    A.UsuarioId = @pUsuarioId";
 
-            return _context.Database.Connection.Query<ListarResponse>(sql, new {pUsuarioId = usuarioId});
-        }
+            var pedidoComItens = new Dictionary<Guid, ListarResponse>();
+            _context.Database.Connection.Query<ListarResponse, ListarItemResponse, ListarResponse>(sql,
+                (ped, pedItem) =>
+                {
+                    ListarResponse listarResponse;
+                    if (!pedidoComItens.TryGetValue(ped.Id, out listarResponse))
+                    {
+                        pedidoComItens.Add(ped.Id, listarResponse = ped);
+                    }
 
-        /*
-                 public Guid Id { get; set; }
-        public string Numero { get; set; }
-        public DateTime Data { get; set; }
-        public Guid UsuarioId { get; set; }
-        public string NomeUsuario { get; set; }
-        public decimal TaxaEntrega { get; set; }
-        public decimal Desconto { get; set; }
-        public IEnumerable<ListarItemResponse> Itens { get; set; }
-             
-             */
+                    if (pedItem != null)
+                        listarResponse.Itens.Add(pedItem);
 
-        public ListarResponse Obter(Guid usuarioId, Guid pedidoId)
-        {
-            throw new NotImplementedException();
+                    return listarResponse;
+                }, new { pUsuarioId = usuarioId }, splitOn: "Id, PedidoItemId");
+
+            return pedidoComItens.Values;
         }
     }
 }

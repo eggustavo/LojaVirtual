@@ -44,24 +44,6 @@ namespace LojaVirtual.Infra.Data.Repositories.DomainUsuario
             return _context.Database.Connection.Query<ListarResponse>(sqlSelect, new {pId = id}).FirstOrDefault();
         }
 
-        //public Usuario ObterEntidade(string usuarioLogin)
-        //{
-        //    const string sqlSelect = @"Select A.*
-        //                               From LV_Usuario A
-        //                               Where
-        //                                 A.UsuarioLogin = @pUsuarioLogin";
-
-        //    var usuario = _context.Database.Connection.Query<Usuario>(sqlSelect, new { pUsuarioLogin = usuarioLogin }).FirstOrDefault();
-
-        //    //É necessário porque estamos salvando pelo EntityFramework e isso faz com que ele não tente inserir o usuário novamente
-        //    if (usuario != null)
-        //    {
-        //        DbSet.Attach(usuario);
-        //    }
-
-        //    return usuario;
-        //}
-
         public Usuario ObterEntidade(string usuarioLogin)
         {
             return DbSet.FirstOrDefault(p => p.UsuarioLogin == usuarioLogin);

@@ -16,7 +16,11 @@ namespace LojaVirtual.Infra.Data.Mappings
                 .HasPrecision(18, 2)
                 .IsRequired();
 
-            HasRequired(p => p.Produto);
+            Property(p => p.ValorTotal)
+                .HasPrecision(18, 2)
+                .IsRequired();
+
+            HasRequired(p => p.Produto).WithMany().Map(m => m.MapKey("ProdutoId"));
 
             ToTable("LV_PedidoItem");
         }

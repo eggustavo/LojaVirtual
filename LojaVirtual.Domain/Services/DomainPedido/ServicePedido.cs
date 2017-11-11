@@ -35,11 +35,6 @@ namespace LojaVirtual.Domain.Services.DomainPedido
             return _repositoryPedido.Listar(usuarioId);
         }
 
-        public ListarResponse Obter(ObterRequest request)
-        {
-            return _repositoryPedido.Obter(request.UsuarioId, request.PedidoId);
-        }
-
         public AdicionarResponse Adicionar(AdicionarRequest request)
         {
             if (request == null)
@@ -89,6 +84,8 @@ namespace LojaVirtual.Domain.Services.DomainPedido
         public void Dispose()
         {
             _repositoryPedido.Dispose();
+            _repositoryUsuario.Dispose();
+            _repositoryProduto.Dispose();
         }
     }
 }

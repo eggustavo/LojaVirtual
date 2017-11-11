@@ -7,11 +7,16 @@
 
     function usuarioFactory($rootScope, $http, settings) {
         return {
-            criar: criar
+            criar: criar,
+            trocarSenha: trocarSenha
         };
 
         function criar(usuario) {
             return $http.post(settings.constServiceUrl + 'api/v1/usuario', usuario);
+        };
+
+        function trocarSenha(usuario) {
+            return $http.put(settings.constServiceUrl + 'api/v1/usuario/alterar-senha', usuario, $rootScope.header);
         };
     };
 })();

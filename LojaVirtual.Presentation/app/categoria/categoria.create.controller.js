@@ -13,8 +13,6 @@
             descricao: ''
         };
 
-        vm.errors = null;
-
         vm.salvar = salvar;
 
         function salvar() {
@@ -28,7 +26,6 @@
             };
 
             function errorCallback(response) {
-                vm.errors = response.data.notifications;
                 toastr.error('Ocorreu um erro ao processar a requisição: ' + message.getMessage(response), 'Loja Virtual');
             };
         };
