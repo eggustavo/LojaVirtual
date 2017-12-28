@@ -35,15 +35,6 @@ namespace LojaVirtual.WebApi.OAuthProvider
             var usuario = _serviceUsuario.Autenticar(autenticarRequest);
             if (usuario == null)
             {
-                //var msgErro = string.Empty;
-                //_serviceUsuario.GetNotifications().ToList().ForEach(notification =>
-                //{
-                //    msgErro += $"{notification.Property} - {notification.Message} \n";
-                //});
-                //
-                //context.SetError("Erro de Autenticação", msgErro);
-
-                //Feito dessa forma, pois o processo de autenticação do OAuth não liberar os objetos envolvidos do contexto
                 context.SetError("Erro de Autenticação", "Usuário ou Senha Inválidos.");
                 return;
             }
