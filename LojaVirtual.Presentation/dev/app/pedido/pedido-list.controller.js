@@ -15,7 +15,7 @@
 
         function initialization() {
             listarPedidos();
-        };
+        }
 
         function listarPedidos() {
             pedidoFactory.listar()
@@ -24,11 +24,11 @@
 
             function successCallback(response) {
                 vm.colecaoPedido = response.data.dataReturn;
-            };
+            }
 
             function errorCallback(response) {
                 toastr.error('Ocorreu um erro ao processar a requisição: ' + message.getMessage(response), 'Loja Virtual');
-            };
-        };
-    };
+            }
+        }
+    }
 })();

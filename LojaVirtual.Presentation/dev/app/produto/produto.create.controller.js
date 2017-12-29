@@ -25,7 +25,7 @@
         
         function initialization() {
             listarCategorias();
-        };  
+        }  
         
         function listarCategorias() {
             categoriaFactory.listar()
@@ -34,12 +34,12 @@
 
             function successCallback(response) {
                 vm.colecaoCategoria = response.data.dataReturn;
-            };
+            }
 
             function errorCallback(response) {
                 toastr.error('Ocorreu um erro ao processar a requisição: ' + message.getMessage(response), 'Loja Virtual');
-            };
-        };        
+            }
+        }        
 
         function salvar() {
             produtoFactory.salvar(vm.produto)
@@ -49,20 +49,20 @@
             function successCallback(response) {
                 $location.path('/produto/list');
                 toastr.success(message.getMessage(response), 'Loja Virtual');
-            };
+            }
 
             function errorCallback(response) {
                 vm.errors = response.data.notifications;
                 toastr.error('Ocorreu um erro ao processar a requisição: ' + message.getMessage(response), 'Loja Virtual');
-            };
-        };
+            }
+        }
 
         function setarImagem (e, reader, file, fileList, fileOjects, fileObj) {
-            if (fileObj.filetype != 'image/jpeg') {
+            if (fileObj.filetype !== 'image/jpeg') {
                 toastr.error('A imagem deve ser do tipo JPEG', 'Loja Virtual');                
             } else {
                 vm.produto.imagem = fileObj.base64;
-            };
-        };        
-    };
+            }
+        }        
+    }
 })();

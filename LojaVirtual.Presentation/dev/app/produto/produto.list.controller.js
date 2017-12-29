@@ -15,7 +15,7 @@
 
         function initialization() {
             listarProdutos();
-        };
+        }
 
         function listarProdutos() {
             produtoFactory.listar()
@@ -24,12 +24,12 @@
 
             function successCallback(response) {
                 vm.colecaoProduto = response.data.dataReturn;
-            };
+            }
 
             function errorCallback(response) {
                 toastr.error('Ocorreu um erro ao processar a requisição: ' + message.getMessage(response), 'Loja Virtual');
-            };
-        };
+            }
+        }
 
         function excluir(produto) {
             produtoFactory.excluir(produto.id)
@@ -40,11 +40,11 @@
                 var idx = vm.colecaoProduto.indexOf(produto);
                 vm.colecaoProduto.splice(idx, 1);
                 toastr.info(message.getMessage(response));
-            };
+            }
 
             function errorCallback(response) {
                 toastr.error('Ocorreu um erro ao processo a requisição: ' + message.getMessage(response), 'Loja Virutal');
-            };
-        };
-    };
+            }
+        }
+    }
 })();

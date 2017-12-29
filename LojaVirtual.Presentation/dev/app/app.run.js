@@ -24,19 +24,19 @@
                     'Authorization': 'bearer ' + $rootScope.token
                 }
             };
-        };
+        }
 
         if (carrinho) {
             var itemsCarrinho = angular.fromJson(carrinho);
             angular.forEach(itemsCarrinho, function (value, key) {
                 $rootScope.carrinho.push(value);
             });           
-        };
+        }
 
         $rootScope.$on("$routeChangeStart", function (event, next, current) {
-            if (next.restrito && $rootScope.usuario == null) {
+            if (next.restrito && $rootScope.usuario === null) {
                 $location.path("/login");              
-            };
+            }
         });        
-    };
+    }
 })();

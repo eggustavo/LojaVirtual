@@ -12,6 +12,6 @@
 
         function pesquisar(cep) {
             return $http.get(settings.constServiceCep + cep + '/json');
-        };
-    };
+        }
+    }
 })();

@@ -13,10 +13,10 @@
 
         function criar(usuario) {
             return $http.post(settings.constServiceUrl + 'api/v1/usuario', usuario);
-        };
+        }
 
         function trocarSenha(usuario) {
             return $http.put(settings.constServiceUrl + 'api/v1/usuario/alterar-senha', usuario, $rootScope.header);
-        };
-    };
+        }
+    }
 })();

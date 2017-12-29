@@ -23,11 +23,11 @@
             function successCallback(response) {
                 $location.path('/categoria/list');
                 toastr.success(message.getMessage(response), 'Loja Virtual');
-            };
+            }
 
             function errorCallback(response) {
                 toastr.error('Ocorreu um erro ao processar a requisição: ' + message.getMessage(response), 'Loja Virtual');
-            };
-        };
-    };
+            }
+        }
+    }
 })();

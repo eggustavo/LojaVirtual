@@ -109,5 +109,5 @@
         .otherwise({
             redirectTo: '/'
         });
-    };
+    }
 })();

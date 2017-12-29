@@ -21,10 +21,10 @@
             };
 
             return $http.post(url, data, header);
-        };
+        }
 
         function alterarSenha(alterarSenhaRequest) {
-            return $http.post(Settings.constServiceUrl + 'api/usuario-alterar-senhha', alterarSenhaRequest, $rootScope.header);
-        };
-    };
+            return $http.post(settings.constServiceUrl + 'api/usuario-alterar-senhha', alterarSenhaRequest, $rootScope.header);
+        }
+    }
 })();

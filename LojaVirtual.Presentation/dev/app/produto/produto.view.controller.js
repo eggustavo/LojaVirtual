@@ -13,21 +13,21 @@
         initialization();
 
         function initialization() {
-            Obterproduto($routeParams.produtoId);
-        };
+            obterproduto($routeParams.produtoId);
+        }
 
-        function Obterproduto(produtoId) {
+        function obterproduto(produtoId) {
             produtoFactory.obterPorId(produtoId)
                 .then(successCallback)
                 .catch(errorCallback);
 
             function successCallback(response) {
                 vm.produto = response.data.dataReturn;
-            };
+            }
 
             function errorCallback(response) {
                 toastr.error('Ocorreu um erro ao processar a requisição: ' + message.getMessage(response), 'Loja Virtual');
-            };
-        };      
-    };
+            }
+        }     
+    }
 })();

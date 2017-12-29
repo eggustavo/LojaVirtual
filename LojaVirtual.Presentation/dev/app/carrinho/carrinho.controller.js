@@ -24,7 +24,7 @@
         function activate() {
             obterItensCarrinho();
             obterTotal();
-        };
+        }
 
         function obterItensCarrinho() {
             angular.forEach($rootScope.carrinho, function (value, key) {
@@ -37,13 +37,13 @@
                     total: value.preco * value.quantidade
                 });
             });
-        };
+        }
 
         function atualizarCarrinho() {  
             $rootScope.carrinho = vm.itensCarrinho;
             localStorage.setItem(settings.constCarrinho, angular.toJson($rootScope.carrinho));
             obterTotal();
-        };
+        }
 
         function obterTotal() {
             var total = 0;
@@ -57,11 +57,11 @@
             var index = vm.itensCarrinho.indexOf(itemCarrinho);
             vm.itensCarrinho.splice(index,1);
             atualizarCarrinho();
-        };
+        }
 
         function login() {
             $location.path('/login');
-        };
+        }
 
         function finalizarCompra() {
             var pedido = {
@@ -75,23 +75,23 @@
                 pedido.itens.push({
                     produtoId: value.id,
                     quantidade: value.quantidade
-                })
+                });
             });
 
             pedidoFactory.salvar(pedido)
                 .then(successCallback)
-                .catch(errorCallback)
+                .catch(errorCallback);
 
             function successCallback(response) {
                 $rootScope.carrinho = [];
                 localStorage.removeItem(settings.constCarrinho);
                 toastr.success(response.data.dataReturn.message, 'Loja Virtual');
                 $location.path('/pedido-finalizado/' + response.data.dataReturn.numero);
-            };
+            }
 
             function errorCallback(response) {
                 toastr.error('Ocorreu um erro ao salvar o pedido: ' + message.getMessage(response), 'Loja Virtual');
-            };         
-        };
-    };
+            }       
+        }
+    }
 })();

@@ -16,7 +16,7 @@
 
         function initialization() {
             listarProdutosPorCategoria($routeParams.categoriaId);
-        };
+        }
 
         function listarProdutosPorCategoria(categoriaId) {
             produtoFactory.listarPorCategoria(categoriaId)
@@ -25,12 +25,12 @@
 
             function successCallback(response) {
                 vm.colecaoProduto = response.data.dataReturn;
-            };
+            }
 
             function errorCallback(response) {
                 toastr.error('Ocorreu um erro ao processar a requisição: ' + message.getMessage(response), 'Loja Virtual');
-            };
-        };
+            }
+        }
 
         function adicionarAoCarrinho(produto) {
             produto.quantidade = 1;
@@ -38,5 +38,5 @@
             localStorage.setItem(settings.constCarrinho, angular.toJson($rootScope.carrinho));
             toastr.success('O item <strong>' + produto.descricao + '</strong> foi adicionado ao seu carrinho', 'Produto Adicionado');
         }        
-    };
+    }
 })();

@@ -14,6 +14,6 @@
 
         function inicialization() {
             vm.numeroPedido = $routeParams.numeroPedido;
-        };
-    };
+        }
+    }
 })();

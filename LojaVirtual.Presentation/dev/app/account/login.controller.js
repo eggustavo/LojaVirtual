@@ -34,11 +34,11 @@
                 sessionStorage.setItem(settings.constToken, $rootScope.token);                
 
                 $location.path('/');
-            };
+            }
 
             function errorCallback(response) {
                 toastr.error(response.data.error_description, response.data.error);
-            };
-        };
-    };
+            }
+        }
+    }
 })();

@@ -3,9 +3,9 @@
 
     angular.module('LV').controller('usuarioCreateCtrl', usuarioCreateController);
 
-    usuarioCreateController.$inject = ['$location', 'usuarioFactory', 'cepFactory'];
+    usuarioCreateController.$inject = ['$location', 'usuarioFactory', 'cepFactory', 'message'];
 
-    function usuarioCreateController($location, usuarioFactory, cepFactory) {
+    function usuarioCreateController($location, usuarioFactory, cepFactory, message) {
         var vm = this;
 
         vm.usuario = {
@@ -34,16 +34,18 @@
             function successCallback(response) {
                 $location.path('/login');
                 toastr.success(message.getMessage(response), 'Loja Virtual');
-            };
+            }
 
             function errorCallback(response) {
                 toastr.error('Ocorreu um erro ao processar a requisição: ' + message.getMessage(response), 'Loja Virtual');
-            };
-        };
+            }
+        }
 
         function pesquisarCep() {
-            if (vm.usuario.cep == null)
+            if (vm.usuario.cep === null)
+            {
                 return;
+            }
 
             cepFactory.pesquisar(vm.usuario.cep)
                 .then(successCallback)
@@ -55,27 +57,11 @@
                 vm.usuario.bairro = response.data.bairro;
                 vm.usuario.municipio = response.data.localidade;
                 vm.usuario.uf = response.data.uf;
-                
-
-
-    /*
-
-                {
-                    "cep": "15991-512",
-                    "logradouro": "Avenida José Schimidt",
-                    "complemento": "",
-                    "bairro": "Nova Cidade",
-                    "localidade": "Matão",
-                    "uf": "SP",
-                    "unidade": "",
-                    "ibge": "3529302",
-                    "gia": "4418"
-                }*/
-            };
+            }
 
             function errorCallback(response) {
                 toastr.error('Ocorreu um erro ao processar a requisição: ' + message.getMessage(response), 'Loja Virtual');
-            };
-        };
-    };
+            }
+        }
+    }
 })();

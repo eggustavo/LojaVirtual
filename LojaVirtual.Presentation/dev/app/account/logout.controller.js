@@ -18,6 +18,6 @@
             sessionStorage.removeItem(settings.constUsuario);
             sessionStorage.removeItem(settings.constToken);
             $location.path('/');
-        };
-    };
+        }
+    }
 })();

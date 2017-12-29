@@ -14,14 +14,14 @@
 
         function listar() {
             return $http.get(settings.constServiceUrl + 'api/v1/pedido/listar', $rootScope.header);
-        };
+        }
 
         function obter(pedidoId) {
             return $http.get(settings.constServiceUrl + 'api/v1/pedido/obter/' + pedidoId, $rootScope.header);
-        };
+        }
 
         function salvar(pedido) {
             return $http.post(settings.constServiceUrl + 'api/v1/pedido', pedido, $rootScope.header);
-        };
-    };
+        }
+    }
 })();
