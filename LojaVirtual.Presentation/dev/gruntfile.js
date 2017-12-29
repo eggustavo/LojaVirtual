@@ -179,7 +179,12 @@ module.exports = function(grunt) {
         //CLEAN
         clean: {
             folder_js: ['assets/js'],
-            folder_dist: ['../dist']
+            folder_dist: {
+                options: {
+                    force: true
+                },
+                src: ['../dist/**']
+            }
         },
         
         //WATCH
